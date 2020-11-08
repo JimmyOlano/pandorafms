@@ -944,8 +944,17 @@ function install_step4()
                     $step2 = mysqli_select_db($connection, $dbname);
                     check_generic($step2, "Opening database '$dbname'");
 
-                    $step3 = parse_mysqli_dump($connection, 'pandoradb.sql');
-                    check_generic($step3, 'Creating schema');
+                    $MySQLver = 0;
+                    $MySQLver = mysqli_get_server_version($connection) / 10000;
+                    check_generic($MySQLver, 'Getting MySQL version: '.$MySQLver);
+
+                    if ($MySQLver >= 8) {
+                        $step3 = parse_mysqli_dump($connection, 'pandoradb_mysql8.sql');
+                        check_generic($step3, 'Creating schema');
+                    } else {
+                        $step3 = parse_mysqli_dump($connection, 'pandoradb.sql');
+                        check_generic($step3, 'Creating schema');
+                    }
 
                     $step4 = parse_mysqli_dump($connection, 'pandoradb_data.sql');
                     check_generic($step4, 'Populating database');
