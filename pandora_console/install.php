@@ -956,8 +956,13 @@ function install_step4()
                         check_generic($step3, 'Creating schema');
                     }
 
-                    $step4 = parse_mysqli_dump($connection, 'pandoradb_data.sql');
-                    check_generic($step4, 'Populating database');
+                    if ($MySQLver >= 8) {
+                        $step4 = parse_mysqli_dump($connection, 'pandoradb_data_mysql8.sql');
+                        check_generic($step4, 'Populating database (MySQL 8.x)');
+                    } else {
+                        $step4 = parse_mysqli_dump($connection, 'pandoradb_data.sql');
+                        check_generic($step4, 'Populating database');
+                    }
                     if (PHP_OS == 'FreeBSD') {
                         $step_freebsd = adjust_paths_for_freebsd($engine, $connection);
                         check_generic($step_freebsd, 'Adjusting paths in database for FreeBSD');
