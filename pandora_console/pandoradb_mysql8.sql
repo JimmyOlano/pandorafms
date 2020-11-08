@@ -2568,7 +2568,7 @@ CREATE TABLE IF NOT EXISTS `twidget` (
 CREATE TABLE IF NOT EXISTS `twidget_dashboard` (
 	`id` int unsigned NOT NULL auto_increment,
 	`position` TEXT NOT NULL,
-	`options` LONGTEXT NOT NULL default '',
+	`options` LONGTEXT NOT NULL,
 	`order` int NOT NULL default 0,
 	`id_dashboard` int unsigned NOT NULL default 0,
 	`id_widget` int unsigned NOT NULL default 0,
