@@ -3304,7 +3304,7 @@ ALTER TABLE tmetaconsole_event_history ADD INDEX `tmeh_timestamp_idx` (`timestam
 CREATE TABLE IF NOT EXISTS `textension_translate_string` (
 	`id` int unsigned NOT NULL auto_increment,
 	`lang` VARCHAR(10) NOT NULL ,
-	`string` TEXT NOT NULL DEFAULT '' ,
+	`string` TEXT NOT NULL,
 	`translation` TEXT NOT NULL,
 	PRIMARY KEY (`id`),
 	KEY `lang_index` (`lang`)
