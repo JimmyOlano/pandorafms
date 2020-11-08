@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `taddress` (
 	`ip_pack` int unsigned NOT NULL default '0',
 	PRIMARY KEY  (`id_a`),
 	KEY `ip` (`ip`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `taddress_agent`
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `taddress_agent` (
 	`id_a` bigint(20) unsigned NOT NULL default '0',
 	`id_agent` mediumint(8) unsigned NOT NULL default '0',
 	PRIMARY KEY  (`id_ag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tagente`
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `tagente` (
 	KEY `direccion` (`direccion`),
 	KEY `disabled` (`disabled`),
 	KEY `id_grupo` (`id_grupo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tagente_datos`
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `tagente_datos` (
 	`utimestamp` bigint(20) default '0',
 	KEY `data_index1` (`id_agente_modulo`, `utimestamp`),
 	KEY `idx_utimestamp` USING BTREE (`utimestamp`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tagente_datos_inc`
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `tagente_datos_inc` (
 	`datos` double(22,5) default NULL,
 	`utimestamp` int unsigned default '0',
 	KEY `data_inc_index_1` (`id_agente_modulo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tagente_datos_string`
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `tagente_datos_string` (
 	`utimestamp` int unsigned NOT NULL default 0,
 	KEY `data_string_index_1` (`id_agente_modulo`, `utimestamp`),
 	KEY `idx_utimestamp` USING BTREE (`utimestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tagente_datos_log4x`
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `tagente_datos_log4x` (
 	`utimestamp` int unsigned NOT NULL default 0,
 	PRIMARY KEY  (`id_tagente_datos_log4x`),
 	KEY `data_log4x_index_1` (`id_agente_modulo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tagente_estado`
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `tagente_estado` (
 	KEY `status_index_1` (`id_agente_modulo`),
 	KEY `idx_agente` (`id_agente`),
 	KEY `running_by` (`running_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 -- Probably last_execution_try index is not useful and loads more than benefits
 
 -- -----------------------------------------------------
@@ -274,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `tagente_modulo` (
 	KEY `module` (`id_modulo`),
 	KEY `nombre` (`nombre` (255)),
 	KEY `module_group` (`id_module_group`) using btree
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 -- snmp_oid is also used for WMI query
 
 -- -----------------------------------------------------
@@ -285,7 +285,7 @@ CREATE TABLE IF NOT EXISTS `tagent_access` (
 	`utimestamp` bigint(20) NOT NULL default '0',
 	KEY `agent_index` (`id_agent`),
 	KEY `idx_utimestamp` USING BTREE (`utimestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `talert_snmp`
@@ -366,7 +366,7 @@ CREATE TABLE  IF NOT EXISTS  `talert_snmp` (
 	`order_19` int unsigned NOT NULL default 19,
 	`order_20` int unsigned NOT NULL default 20,
 	PRIMARY KEY  (`id_as`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `talert_commands`
@@ -383,7 +383,7 @@ CREATE TABLE  IF NOT EXISTS `talert_commands` (
 	`fields_hidden` TEXT,
 	`previous_name` text,
 	PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `talert_actions`
@@ -438,7 +438,7 @@ CREATE TABLE  IF NOT EXISTS `talert_actions` (
 	PRIMARY KEY  (`id`),
 	FOREIGN KEY (`id_alert_command`) REFERENCES talert_commands(`id`)
 		ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `talert_templates`
@@ -507,7 +507,7 @@ CREATE TABLE IF NOT EXISTS `talert_templates` (
 	KEY `idx_template_action` (`id_alert_action`),
 	FOREIGN KEY (`id_alert_action`) REFERENCES talert_actions(`id`)
 		ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `talert_template_modules`
@@ -533,7 +533,7 @@ CREATE TABLE IF NOT EXISTS `talert_template_modules` (
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	UNIQUE (`id_agent_module`, `id_alert_template`),
 	INDEX force_execution (`force_execution`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `talert_template_module_actions`
@@ -551,7 +551,7 @@ CREATE TABLE IF NOT EXISTS `talert_template_module_actions` (
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (`id_alert_action`) REFERENCES talert_actions(`id`)
 		ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `talert_special_days`
@@ -563,7 +563,7 @@ CREATE TABLE IF NOT EXISTS `talert_special_days` (
 	`same_day` enum('monday','tuesday','wednesday','thursday','friday','saturday','sunday') NOT NULL DEFAULT 'sunday',
 	`description` text,
 	PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tattachment`
@@ -576,7 +576,7 @@ CREATE TABLE IF NOT EXISTS `tattachment` (
 	`description` varchar(150) default '',
 	`size` bigint(20) unsigned NOT NULL default '0',
 	PRIMARY KEY  (`id_attachment`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tconfig`
@@ -586,7 +586,7 @@ CREATE TABLE IF NOT EXISTS `tconfig` (
 	`token` varchar(100) NOT NULL default '',
 	`value` text NOT NULL,
 	PRIMARY KEY  (`id_config`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tconfig_os`
@@ -598,7 +598,7 @@ CREATE TABLE IF NOT EXISTS  `tconfig_os` (
 	`icon_name` varchar(100) default '',
 	`previous_name` text NULL,
 	PRIMARY KEY  (`id_os`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tcontainer`
@@ -612,7 +612,7 @@ CREATE TABLE IF NOT EXISTS `tcontainer` (
 	`description` TEXT NOT NULL,
  	PRIMARY KEY  (`id_container`),
  	KEY `parent_index` (`parent`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tcontainer_item`
@@ -636,7 +636,7 @@ CREATE TABLE IF NOT EXISTS `tcontainer_item` (
 	PRIMARY KEY(`id_ci`),
 	FOREIGN KEY (`id_container`) REFERENCES tcontainer(`id_container`)
 	ON DELETE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tevento`
@@ -670,7 +670,7 @@ CREATE TABLE IF NOT EXISTS `tevento` (
 	KEY `idx_agente` (`id_agente`),
 	KEY `idx_agentmodule` (`id_agentmodule`),
 	KEY `idx_utimestamp` USING BTREE (`utimestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 -- Criticity: 0 - Maintance (grey)
 -- Criticity: 1 - Informational (blue)
 -- Criticity: 2 - Normal (green) (status 0)
@@ -688,7 +688,7 @@ CREATE TABLE IF NOT EXISTS `tevent_extended` (
 	`description` text,
 	FOREIGN KEY `tevent_ext_fk`(`id_evento`) REFERENCES `tevento`(`id_evento`)
     ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tgrupo`
@@ -708,7 +708,7 @@ CREATE TABLE IF NOT EXISTS `tgrupo` (
 	`password` varchar(45) default '',
  	PRIMARY KEY  (`id_grupo`),
  	KEY `parent_index` (`parent`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tcredential_store`
@@ -722,7 +722,7 @@ CREATE TABLE IF NOT EXISTS `tcredential_store` (
 	`extra_1` text,
 	`extra_2` text,
 	PRIMARY KEY (`identifier`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tincidencia`
@@ -747,7 +747,7 @@ CREATE TABLE IF NOT EXISTS `tincidencia` (
 	PRIMARY KEY  (`id_incidencia`),
 	KEY `incident_index_1` (`id_usuario`,`id_incidencia`),
 	KEY `id_agente_modulo` (`id_agente_modulo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tlanguage`
@@ -756,7 +756,7 @@ CREATE TABLE IF NOT EXISTS `tlanguage` (
 	`id_language` varchar(6) NOT NULL default '',
 	`name` varchar(100) NOT NULL default '',
 	PRIMARY KEY  (`id_language`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tlink`
@@ -766,7 +766,7 @@ CREATE TABLE IF NOT EXISTS `tlink` (
 	`name` varchar(100) NOT NULL default '',
 	`link` varchar(255) NOT NULL default '',
 	PRIMARY KEY  (`id_link`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tmodule_group`
@@ -775,7 +775,7 @@ CREATE TABLE IF NOT EXISTS `tmodule_group` (
 	`id_mg` tinyint(4) unsigned NOT NULL auto_increment,
 	`name` varchar(150) NOT NULL default '',
 	PRIMARY KEY  (`id_mg`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- This table was moved cause the `tmodule_relationship` will add
 -- a foreign key for the trecon_task(id_rt)
@@ -828,7 +828,7 @@ CREATE TABLE IF NOT EXISTS `trecon_task` (
 	`subnet_csv` TINYINT(1) UNSIGNED DEFAULT 0,
 	PRIMARY KEY  (`id_rt`),
 	KEY `recon_task_daemon` (`id_recon_server`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tdiscovery_tmp`
@@ -844,7 +844,7 @@ CREATE TABLE `tdiscovery_tmp_agents` (
 	KEY `id_rt` (`id_rt`),
 	INDEX `label` (`label`),
 	CONSTRAINT `tdta_trt` FOREIGN KEY (`id_rt`) REFERENCES `trecon_task` (`id_rt`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE `tdiscovery_tmp_connections` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -854,7 +854,7 @@ CREATE TABLE `tdiscovery_tmp_connections` (
   `if_1` text,
   `if_2` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tmodule_relationship`
@@ -874,7 +874,7 @@ CREATE TABLE IF NOT EXISTS `tmodule_relationship` (
 		ON DELETE CASCADE,
 	FOREIGN KEY (`id_rt`) REFERENCES trecon_task(`id_rt`)
 		ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnetwork_component`
@@ -952,7 +952,7 @@ CREATE TABLE IF NOT EXISTS `tnetwork_component` (
 	`query_filters` text NOT NULL,
 	`enabled` tinyint(1) UNSIGNED DEFAULT 1,
 	PRIMARY KEY  (`id_nc`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnetwork_component_group`
@@ -962,7 +962,7 @@ CREATE TABLE IF NOT EXISTS `tnetwork_component_group` (
 	`name` varchar(200) NOT NULL default '',
 	`parent` mediumint(8) unsigned NOT NULL default '0',
 	PRIMARY KEY  (`id_sg`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnetwork_profile`
@@ -972,7 +972,7 @@ CREATE TABLE IF NOT EXISTS `tnetwork_profile` (
 	`name` varchar(100) NOT NULL default '',
 	`description` varchar(250) default '',
 	PRIMARY KEY  (`id_np`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnetwork_profile_component`
@@ -981,7 +981,7 @@ CREATE TABLE IF NOT EXISTS `tnetwork_profile_component` (
 	`id_nc` mediumint(8) unsigned NOT NULL default '0',
 	`id_np` mediumint(8) unsigned NOT NULL default '0',
 	KEY `id_np` (`id_np`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tpen`
@@ -991,7 +991,7 @@ CREATE TABLE IF NOT EXISTS `tpen` (
   `manufacturer` TEXT,
   `description` TEXT,
   PRIMARY KEY (`pen`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnetwork_profile_pen`
@@ -1003,7 +1003,7 @@ CREATE TABLE IF NOT EXISTS `tnetwork_profile_pen` (
     REFERENCES `tpen` (`pen`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_network_profile_pen_id_np` FOREIGN KEY (`id_np`)
     REFERENCES `tnetwork_profile` (`id_np`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnota`
@@ -1016,14 +1016,14 @@ CREATE TABLE IF NOT EXISTS `tnota` (
 	`nota` mediumtext NOT NULL,
 	PRIMARY KEY  (`id_nota`),
 	KEY `id_incident` (`id_incident`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `torigen`
 -- ----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `torigen` (
 	`origen` varchar(100) NOT NULL default ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tperfil`
@@ -1055,7 +1055,7 @@ CREATE TABLE IF NOT EXISTS `tperfil` (
 	`vconsole_edit` tinyint(1) NOT NULL DEFAULT 0,
 	`vconsole_management` tinyint(1) NOT NULL DEFAULT 0,
 	PRIMARY KEY  (`id_perfil`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `trecon_script`
@@ -1068,7 +1068,7 @@ CREATE TABLE IF NOT EXISTS `trecon_script` (
 	`macros` TEXT,
 	`type` int NOT NULL default 0,
 	PRIMARY KEY  (`id_recon_script`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tserver`
@@ -1105,7 +1105,7 @@ CREATE TABLE IF NOT EXISTS `tserver` (
 	`port` int unsigned NOT NULL default 0,
 	PRIMARY KEY  (`id_server`),
 	KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 -- server types:
 -- 0 data
 -- 1 network
@@ -1132,7 +1132,7 @@ CREATE TABLE IF NOT EXISTS `tsesion` (
 	`utimestamp` bigint(20) unsigned NOT NULL default '0',
 	PRIMARY KEY  (`id_sesion`),
 	KEY `idx_user` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `ttipo_modulo`
@@ -1144,7 +1144,7 @@ CREATE TABLE IF NOT EXISTS `ttipo_modulo` (
 	`descripcion` varchar(100) NOT NULL default '',
 	`icon` varchar(100) default NULL,
 	PRIMARY KEY  (`id_tipo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `ttrap`
@@ -1170,7 +1170,7 @@ CREATE TABLE IF NOT EXISTS `ttrap` (
 	INDEX timestamp (`timestamp`),
 	INDEX status (`status`),
 	INDEX source (`source`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tevent_filter`
@@ -1201,7 +1201,7 @@ CREATE TABLE IF NOT EXISTS `tevent_filter` (
 	`user_comment` text NOT NULL,
 	`id_source_event` int  NULL default 0,
 	PRIMARY KEY  (`id_filter`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tusuario`
@@ -1250,7 +1250,7 @@ CREATE TABLE IF NOT EXISTS `tusuario` (
 	`ehorus_user_level_enabled` TINYINT(1),
 	CONSTRAINT `fk_filter_id` FOREIGN KEY (`id_filter`) REFERENCES tevent_filter (`id_filter`) ON DELETE SET NULL,
 	UNIQUE KEY `id_user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tusuario_perfil`
@@ -1265,7 +1265,7 @@ CREATE TABLE IF NOT EXISTS `tusuario_perfil` (
 	`id_policy` int unsigned NOT NULL default '0',
 	`tags` text NOT NULL,
 	PRIMARY KEY  (`id_up`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tuser_double_auth`
@@ -1277,7 +1277,7 @@ CREATE TABLE IF NOT EXISTS `tuser_double_auth` (
 	PRIMARY KEY (`id`),
 	UNIQUE (`id_user`),
 	FOREIGN KEY (`id_user`) REFERENCES tusuario(`id_user`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `treset_pass_history`
@@ -1288,7 +1288,7 @@ CREATE TABLE IF NOT EXISTS `treset_pass_history` (
 	`reset_moment` datetime NOT NULL,
 	`success` tinyint(1) NOT NULL,
 	PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tnotification_source`
@@ -1302,7 +1302,7 @@ CREATE TABLE `tnotification_source` (
     `user_editable` int DEFAULT NULL,
     `also_mail` int DEFAULT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tmensajes`
@@ -1324,7 +1324,7 @@ CREATE TABLE IF NOT EXISTS `tmensajes` (
 	UNIQUE KEY `id_mensaje` (`id_mensaje`),
 	KEY `tsource_fk` (`id_source`),
 	CONSTRAINT `tsource_fk` FOREIGN KEY (`id_source`) REFERENCES `tnotification_source` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnotification_user`
@@ -1340,7 +1340,7 @@ CREATE TABLE `tnotification_user` (
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (`id_user`) REFERENCES `tusuario`(`id_user`)
         ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnotification_group`
@@ -1351,7 +1351,7 @@ CREATE TABLE `tnotification_group` (
 	PRIMARY KEY (`id_mensaje`,`id_group`),
 	FOREIGN KEY (`id_mensaje`) REFERENCES `tmensajes`(`id_mensaje`)
 		ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnotification_source_user`
@@ -1366,7 +1366,7 @@ CREATE TABLE `tnotification_source_user` (
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (`id_user`) REFERENCES `tusuario`(`id_user`)
         ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnotification_source_group`
@@ -1378,7 +1378,7 @@ CREATE TABLE `tnotification_source_group` (
 	INDEX (`id_group`),
     FOREIGN KEY (`id_source`) REFERENCES `tnotification_source`(`id`)
         ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnotification_source_user`
@@ -1396,7 +1396,7 @@ CREATE TABLE `tnotification_source_group_user` (
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (`id_group`) REFERENCES `tnotification_source_group`(`id_group`)
         ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnews`
@@ -1412,7 +1412,7 @@ CREATE TABLE IF NOT EXISTS `tnews` (
 	`expire` tinyint(1) DEFAULT 0,
 	`expire_timestamp` DATETIME  NOT NULL DEFAULT 0,
 	PRIMARY KEY(`id_news`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tgraph`
@@ -1436,7 +1436,7 @@ CREATE TABLE IF NOT EXISTS `tgraph` (
 	`modules_series` tinyint(1) UNSIGNED NOT NULL default 0,
 	`fullscale` tinyint(1) UNSIGNED NOT NULL default 0,
 	PRIMARY KEY(`id_graph`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tgraph_source`
@@ -1450,7 +1450,7 @@ CREATE TABLE IF NOT EXISTS `tgraph_source` (
 	`label` varchar(150) DEFAULT '',
 	`field_order` int DEFAULT 0,
 	PRIMARY KEY(`id_gs`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `treport`
@@ -1476,7 +1476,7 @@ CREATE TABLE IF NOT EXISTS `treport` (
 	`cover_page_render` tinyint(1) NOT NULL DEFAULT 1,
 	`index_render` tinyint(1) NOT NULL DEFAULT 1,
 	PRIMARY KEY(`id_report`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `treport_content`
@@ -1550,7 +1550,7 @@ CREATE TABLE IF NOT EXISTS `treport_content` (
 	PRIMARY KEY(`id_rc`),
 	FOREIGN KEY (`id_report`) REFERENCES treport(`id_report`)
 		ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `treport_content_sla_combined`
@@ -1567,7 +1567,7 @@ CREATE TABLE IF NOT EXISTS `treport_content_sla_combined` (
 	PRIMARY KEY(`id`),
 	FOREIGN KEY (`id_report_content`) REFERENCES treport_content(`id_rc`)
 		ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `treport_content_item`
@@ -1582,7 +1582,7 @@ CREATE TABLE IF NOT EXISTS `treport_content_item` (
 	PRIMARY KEY(`id`),
 	FOREIGN KEY (`id_report_content`) REFERENCES treport_content(`id_rc`)
 		ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `treport_custom_sql`
@@ -1592,7 +1592,7 @@ CREATE TABLE IF NOT EXISTS `treport_custom_sql` (
 	`name` varchar(150) NOT NULL default '',
 	`sql` TEXT,
 	PRIMARY KEY(`id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tlayout`
@@ -1607,7 +1607,7 @@ CREATE TABLE IF NOT EXISTS `tlayout` (
 	`background_color` varchar(50) NOT NULL default '#FFF',
 	`is_favourite` INTEGER UNSIGNED NOT NULL default 0,
 	PRIMARY KEY(`id`)
-)  ENGINE = InnoDB DEFAULT CHARSET=utf8;
+)  ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tlayout_data`
@@ -1650,7 +1650,7 @@ CREATE TABLE IF NOT EXISTS `tlayout_data` (
 	`show_last_value` tinyint(1) UNSIGNED NULL default '0',
 	`cache_expiration` INTEGER UNSIGNED NOT NULL default 0,
 	PRIMARY KEY(`id`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tplugin`
@@ -1672,7 +1672,7 @@ CREATE TABLE IF NOT EXISTS `tplugin` (
 	`macros` text,
 	`parameters` text,
 	PRIMARY KEY(`id`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8; 
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4; 
 
 -- ---------------------------------------------------------------------
 -- Table `tmodule`
@@ -1681,7 +1681,7 @@ CREATE TABLE IF NOT EXISTS `tmodule` (
 	`id_module` int unsigned NOT NULL auto_increment,
 	`name` varchar(100) NOT NULL default '',
 	PRIMARY KEY (`id_module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tserver_export`
@@ -1702,7 +1702,7 @@ CREATE TABLE IF NOT EXISTS `tserver_export` (
 	`timezone_offset` TINYINT(2) NULL DEFAULT '0' COMMENT 'Number of hours of diference with the server timezone' ,
 	PRIMARY KEY  (`id`),
 	INDEX id_export_server (`id_export_server`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tserver_export_data`
@@ -1718,7 +1718,7 @@ CREATE TABLE IF NOT EXISTS `tserver_export_data` (
 	`data` varchar(255) default NULL, 
 	`timestamp` datetime NOT NULL default '1970-01-01 00:00:00',
 	PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tplanned_downtime`
@@ -1748,7 +1748,7 @@ CREATE TABLE IF NOT EXISTS `tplanned_downtime` (
 	`type_periodicity` varchar(100) NOT NULL default 'weekly',
 	`id_user` varchar(100) NOT NULL default '0',
 	PRIMARY KEY (  `id` ) 
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tplanned_downtime_agents`
@@ -1762,7 +1762,7 @@ CREATE TABLE IF NOT EXISTS `tplanned_downtime_agents` (
 	PRIMARY KEY  (`id`),
 	FOREIGN KEY (`id_downtime`) REFERENCES tplanned_downtime(`id`)
 		ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tplanned_downtime_modules`
@@ -1775,7 +1775,7 @@ CREATE TABLE IF NOT EXISTS `tplanned_downtime_modules` (
 	PRIMARY KEY  (`id`),
 	FOREIGN KEY (`id_downtime`) REFERENCES tplanned_downtime(`id`)
 		ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- GIS extension Tables
 -- ----------------------------------------------------------------------
@@ -1951,7 +1951,7 @@ CREATE TABLE IF NOT EXISTS `tgis_map_layer_groups` (
 	FOREIGN KEY (`agent_id`)
 		REFERENCES `tagente` (`id_agente`)
 		ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tgroup_stat`
@@ -1972,7 +1972,7 @@ CREATE TABLE IF NOT EXISTS `tgroup_stat` (
 	PRIMARY KEY  (`id_group`)
 ) ENGINE=InnoDB 
 COMMENT = 'Table to store global system stats per group' 
-DEFAULT CHARSET=utf8;
+DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnetwork_map`
@@ -2010,7 +2010,7 @@ CREATE TABLE IF NOT EXISTS `tnetwork_map` (
 	`id_tag` int DEFAULT 0,
 	`store_group` int DEFAULT 0,
 	PRIMARY KEY  (`id_networkmap`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tsnmp_filter`
@@ -2021,7 +2021,7 @@ CREATE TABLE IF NOT EXISTS `tsnmp_filter` (
 	`filter` varchar(255) default '',
 	`unified_filters_id` int not null default 0,
 	PRIMARY KEY  (`id_snmp_filter`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tagent_custom_fields`
@@ -2033,7 +2033,7 @@ CREATE TABLE IF NOT EXISTS `tagent_custom_fields` (
 	`is_password_type` tinyint(1) NOT NULL default 0,
 	`combo_values` VARCHAR(255) DEFAULT '',
 	PRIMARY KEY  (`id_field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tagent_custom_data`
@@ -2047,7 +2047,7 @@ CREATE TABLE IF NOT EXISTS `tagent_custom_data` (
 	FOREIGN KEY (`id_agent`) REFERENCES tagente(`id_agente`)
 		ON UPDATE CASCADE ON DELETE CASCADE,
 	PRIMARY KEY  (`id_field`, `id_agent`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `ttag`
@@ -2061,7 +2061,7 @@ CREATE TABLE IF NOT EXISTS `ttag` (
 	`phone` text NULL,
 	`previous_name` text NULL,
 	PRIMARY KEY  (`id_tag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4; 
 
 -- -----------------------------------------------------
 -- Table `ttag_module`
@@ -2072,7 +2072,7 @@ CREATE TABLE IF NOT EXISTS `ttag_module` (
 	`id_policy_module` int NOT NULL DEFAULT 0,
 	PRIMARY KEY  (id_tag, id_agente_modulo),
 	KEY `idx_id_agente_modulo` (`id_agente_modulo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4; 
 
 -- ---------------------------------------------------------------------
 -- Table `ttag_policy_module`
@@ -2082,7 +2082,7 @@ CREATE TABLE IF NOT EXISTS `ttag_policy_module` (
 	`id_policy_module` int NOT NULL DEFAULT 0, 
 	PRIMARY KEY  (id_tag, id_policy_module),
 	KEY `idx_id_policy_module` (`id_policy_module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4; 
 
 -- ---------------------------------------------------------------------
 -- Table `tnetflow_filter`
@@ -2100,7 +2100,7 @@ CREATE TABLE IF NOT EXISTS `tnetflow_filter` (
 	`filter_args` TEXT NOT NULL,
 	`aggregate` varchar(60),
 	PRIMARY KEY  (`id_sg`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tnetflow_report`
@@ -2112,7 +2112,7 @@ CREATE TABLE IF NOT EXISTS `tnetflow_report` (
 	`id_group` int,
 	`server_name` TEXT NOT NULL,
 	PRIMARY KEY(`id_report`)  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tnetflow_report_content`
@@ -2132,7 +2132,7 @@ CREATE TABLE IF NOT EXISTS `tnetflow_report_content` (
 	ON DELETE CASCADE,
 	FOREIGN KEY (`id_filter`) REFERENCES tnetflow_filter(`id_sg`)
 	ON DELETE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tpassword_history`
@@ -2144,7 +2144,7 @@ CREATE TABLE IF NOT EXISTS `tpassword_history` (
 	`date_begin` DATETIME  NOT NULL DEFAULT 0,
 	`date_end` DATETIME  NOT NULL DEFAULT 0,
 	PRIMARY KEY  (`id_pass`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tevent_response`
@@ -2163,7 +2163,7 @@ CREATE TABLE IF NOT EXISTS `tevent_response` (
 	`server_to_exec` int unsigned NOT NULL DEFAULT 0,
 	`command_timeout` int unsigned NOT NULL DEFAULT 90,
 	PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tcategory`
@@ -2172,7 +2172,7 @@ CREATE TABLE IF NOT EXISTS `tcategory` (
 	`id` int unsigned NOT NULL auto_increment, 
 	`name` varchar(600) NOT NULL default '', 
 	PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4; 
 
 -- ---------------------------------------------------------------------
 -- Table `tupdate_settings`
@@ -2180,7 +2180,7 @@ CREATE TABLE IF NOT EXISTS `tcategory` (
 CREATE TABLE IF NOT EXISTS `tupdate_settings` ( 
 	`key` varchar(255) default '', 
 	`value` varchar(255) default '', PRIMARY KEY (`key`) 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tupdate_package`
@@ -2189,7 +2189,7 @@ CREATE TABLE IF NOT EXISTS `tupdate_package` (
 	id int unsigned NOT NULL auto_increment,  
 	timestamp datetime NOT NULL,  
 	description varchar(255) default '',  PRIMARY KEY (`id`) 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tupdate`
@@ -2209,7 +2209,7 @@ CREATE TABLE IF NOT EXISTS `tupdate` (
 	db_field_name varchar(140) default '',  
 	db_field_value varchar(1024) default '',  PRIMARY KEY  (`id`),  
 	FOREIGN KEY (`id_update_package`) REFERENCES tupdate_package(`id`)   ON UPDATE CASCADE ON DELETE CASCADE 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tupdate_journal`
@@ -2218,7 +2218,7 @@ CREATE TABLE IF NOT EXISTS `tupdate_journal` (
 	id int unsigned NOT NULL auto_increment,  
 	id_update int unsigned NOT NULL default 0,  PRIMARY KEY  (`id`),  
 	FOREIGN KEY (`id_update`) REFERENCES tupdate(`id`)   ON UPDATE CASCADE ON DELETE CASCADE 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `talert_snmp_action`
@@ -2243,7 +2243,7 @@ CREATE TABLE IF NOT EXISTS  `talert_snmp_action` (
 	`al_field14` text NOT NULL,
 	`al_field15` text NOT NULL,
 	PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tsessions_php`
@@ -2253,7 +2253,7 @@ CREATE TABLE IF NOT EXISTS `tsessions_php` (
 	`last_active` INTEGER NOT NULL,
 	`data` TEXT,
 	PRIMARY KEY (`id_session`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tmap`
@@ -2280,7 +2280,7 @@ CREATE TABLE IF NOT EXISTS `tmap` (
 	`filter` TEXT,
 	`id_group_map` int UNSIGNED NOT NULL default 0,
 	PRIMARY KEY(`id`)
-)  ENGINE = InnoDB DEFAULT CHARSET=utf8;
+)  ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `titem`
@@ -2299,7 +2299,7 @@ CREATE TABLE IF NOT EXISTS `titem` (
 	`options` TEXT,
 	`style` TEXT,
 	PRIMARY KEY(`id`)
-)  ENGINE = InnoDB DEFAULT CHARSET=utf8;
+)  ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `trel_item`
@@ -2316,7 +2316,7 @@ CREATE TABLE IF NOT EXISTS `trel_item` (
 	`id_item` int unsigned NOT NULL default 0,
 	`deleted` int unsigned NOT NULL default 0,
 	PRIMARY KEY(`id`)
-)  ENGINE = InnoDB DEFAULT CHARSET=utf8;
+)  ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tlocal_component`
@@ -2373,7 +2373,7 @@ CREATE TABLE IF NOT EXISTS `tlocal_component` (
 	PRIMARY KEY  (`id`),
 	FOREIGN KEY (`id_network_component_group`) REFERENCES tnetwork_component_group(`id_sg`)
 		ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tpolicy_modules`
@@ -2453,7 +2453,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_modules` (
 	PRIMARY KEY  (`id`),
 	KEY `main_idx` (`id_policy`),
 	UNIQUE (`id_policy`, `name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tpolicies`
@@ -2467,7 +2467,7 @@ CREATE TABLE IF NOT EXISTS `tpolicies` (
 	`status` int unsigned NOT NULL default 0,
 	`force_apply` tinyint(1) default 0,
 	PRIMARY KEY  (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tpolicy_alerts`
@@ -2486,7 +2486,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_alerts` (
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (`id_policy`) REFERENCES tpolicies(`id`)
 		ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tpolicy_agents`
@@ -2501,7 +2501,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_agents` (
 	`id_node` int NOT NULL default 0,
 	PRIMARY KEY  (`id`),
 	UNIQUE (`id_policy`, `id_agent`, `id_node`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tpolicy_groups`
@@ -2515,7 +2515,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_groups` (
 	`last_apply_utimestamp` int unsigned NOT NULL default 0,
 	PRIMARY KEY  (`id`),
 	UNIQUE (`id_policy`, `id_group`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tdashboard`
@@ -2529,7 +2529,7 @@ CREATE TABLE IF NOT EXISTS `tdashboard` (
 	`cells` int unsigned default 0,
 	`cells_slideshow` TINYINT(1) NOT NULL default 0,
 	PRIMARY KEY (`id`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tdatabase`
@@ -2547,7 +2547,7 @@ CREATE TABLE IF NOT EXISTS `tdatabase` (
 	`ssh_pubkey` TEXT,
 	`last_error` TEXT,
 	PRIMARY KEY (`id`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8 ;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `twidget`
@@ -2560,7 +2560,7 @@ CREATE TABLE IF NOT EXISTS `twidget` (
 	`options` text NOT NULL default '',
 	`page` varchar(120) NOT NULL default '',
 	PRIMARY KEY (`id`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `twidget_dashboard`
@@ -2577,7 +2577,7 @@ CREATE TABLE IF NOT EXISTS `twidget_dashboard` (
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`id_dashboard`) REFERENCES tdashboard(`id`)
 		ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tmodule_inventory`
@@ -2594,7 +2594,7 @@ CREATE TABLE IF NOT EXISTS `tmodule_inventory` (
 	PRIMARY KEY  (`id_module_inventory`),
 	FOREIGN KEY (`id_os`) REFERENCES tconfig_os(`id_os`)
 		ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tagent_module_inventory`
@@ -2618,7 +2618,7 @@ CREATE TABLE IF NOT EXISTS `tagent_module_inventory` (
 		ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY (`id_module_inventory`) REFERENCES tmodule_inventory(`id_module_inventory`)
 		ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tpolicy_modules_inventory`
@@ -2637,7 +2637,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_modules_inventory` (
 		ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY (`id_module_inventory`) REFERENCES tmodule_inventory(`id_module_inventory`)
 		ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tagente_datos_inventory`
@@ -2649,7 +2649,7 @@ CREATE TABLE IF NOT EXISTS `tagente_datos_inventory` (
 	`timestamp` datetime default '1970-01-01 00:00:00',
 	KEY `idx_id_agent_module` (`id_agent_module_inventory`),
 	KEY `idx_utimestamp` USING BTREE (`utimestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `ttrap_custom_values`
@@ -2663,7 +2663,7 @@ CREATE TABLE IF NOT EXISTS `ttrap_custom_values` (
 	`severity` tinyint(4) unsigned NOT NULL default '2',
 	CONSTRAINT oid_custom_oid UNIQUE(oid, custom_oid),
 	PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tmetaconsole_setup`
@@ -2691,7 +2691,7 @@ CREATE TABLE IF NOT EXISTS `tmetaconsole_setup` (
 	PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB 
 COMMENT = 'Table to store metaconsole sources' 
-DEFAULT CHARSET=utf8;
+DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tprofile_view`
@@ -2705,7 +2705,7 @@ CREATE TABLE IF NOT EXISTS `tprofile_view` (
 	PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB 
 COMMENT = 'Table to define by each profile defined in Pandora, to which sec/page has access independently of its ACL (for showing in the console or not). By default have access to all pages allowed by ACL, if forbidden here, then pages are not shown.' 
-DEFAULT CHARSET=utf8;
+DEFAULT CHARSET=UTF8MB4;
 
 
 -- ---------------------------------------------------------------------
@@ -2741,7 +2741,7 @@ CREATE TABLE IF NOT EXISTS `tservice` (
 	PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB 
 COMMENT = 'Table to define services to monitor' 
-DEFAULT CHARSET=utf8;
+DEFAULT CHARSET=UTF8MB4;
 
 
 -- ---------------------------------------------------------------------
@@ -2763,7 +2763,7 @@ CREATE TABLE IF NOT EXISTS `tservice_element` (
 	PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB 
 COMMENT = 'Table to define the modules and the weights of the modules that define a service' 
-DEFAULT CHARSET=utf8;
+DEFAULT CHARSET=UTF8MB4;
 
 
 -- ---------------------------------------------------------------------
@@ -2777,7 +2777,7 @@ CREATE TABLE IF NOT EXISTS `tcollection` (
 	`description` mediumtext,
 	`status` int unsigned NOT NULL default '0',
 	PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 -- status: 0 - Not apply
 -- status: 1 - Applied
 
@@ -2794,7 +2794,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_collections` (
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (`id_collection`) REFERENCES `tcollection` (`id`)
 		ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tpolicy_alerts_actions`
@@ -2810,7 +2810,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_alerts_actions` (
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (`id_alert_action`) REFERENCES `talert_actions` (`id`)
 		ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tpolicy_plugins`
@@ -2821,7 +2821,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_plugins` (
 	`plugin_exec` TEXT,
 	`pending_delete` tinyint(1) default '0',
 	PRIMARY KEY  (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tsesion_extended`
@@ -2833,7 +2833,7 @@ CREATE TABLE IF NOT EXISTS `tsesion_extended` (
 	`hash` varchar(255) default '',
 	PRIMARY KEY (`id`),
 	KEY idx_session (id_sesion)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tskin`
@@ -2845,7 +2845,7 @@ CREATE TABLE IF NOT EXISTS `tskin` (
 	`description` text NOT NULL DEFAULT '',
 	`disabled` tinyint(2) NOT NULL default '0', 
 	PRIMARY KEY  (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tpolicy_queue`
@@ -2859,7 +2859,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_queue` (
 	`end_utimestamp` int unsigned NOT NULL default 0,
 	`priority` int unsigned NOT NULL default '0',
 	PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tevent_rule`
@@ -2901,7 +2901,7 @@ CREATE TABLE IF NOT EXISTS `tevent_rule` (
 	`operator_log_agent` text COMMENT 'Operator for log_agent',
 	PRIMARY KEY  (`id_event_rule`),
 	KEY `idx_id_event_alert` (`id_event_alert`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tevent_alert`
@@ -2950,7 +2950,7 @@ CREATE TABLE IF NOT EXISTS `tevent_alert` (
 	`special_days` tinyint(1) default 0,
 	`disable_event` tinyint(1) default 0,
 	PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tevent_alert_action`
@@ -2968,7 +2968,7 @@ CREATE TABLE IF NOT EXISTS `tevent_alert_action` (
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (`id_alert_action`) REFERENCES talert_actions(`id`)
 		ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 
 -- -----------------------------------------------------
@@ -2984,7 +2984,7 @@ CREATE TABLE IF NOT EXISTS `tmodule_synth` (
 	FOREIGN KEY (`id_agent_module_target`) REFERENCES tagente_modulo(`id_agente_modulo`)
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 
 -- -----------------------------------------------------
@@ -2996,7 +2996,7 @@ CREATE TABLE IF NOT EXISTS `tnetworkmap_enterprise` (
 	`id_group` int unsigned NOT NULL default 0,
 	`options` text default '',
 	PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 
 -- -----------------------------------------------------
@@ -3018,7 +3018,7 @@ CREATE TABLE IF NOT EXISTS `tnetworkmap_enterprise_nodes` (
 	PRIMARY KEY (id),
 	FOREIGN KEY (`id_networkmap_enterprise`) REFERENCES tnetworkmap_enterprise(`id`)
 		ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 
 -- -----------------------------------------------------
@@ -3035,7 +3035,7 @@ CREATE TABLE IF NOT EXISTS `tnetworkmap_ent_rel_nodes` (
 	PRIMARY KEY (id, id_networkmap_enterprise),
 	FOREIGN KEY (`id_networkmap_enterprise`) REFERENCES tnetworkmap_enterprise(`id`)
 		ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `treport_template`
@@ -3057,7 +3057,7 @@ CREATE TABLE IF NOT EXISTS `treport_template` (
 	`cover_page_render` tinyint(1) NOT NULL DEFAULT 1,
 	`index_render` tinyint(1) NOT NULL DEFAULT 1,
 	PRIMARY KEY(`id_report`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `treport_content_template`
@@ -3130,7 +3130,7 @@ CREATE TABLE IF NOT EXISTS `treport_content_template` (
 	`compare_work_time` tinyint(1) UNSIGNED NOT NULL default 0,
 	`graph_render` tinyint(1) UNSIGNED NOT NULL default 0,
 	PRIMARY KEY(`id_rc`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `treport_content_sla_com_temp` (treport_content_sla_combined_template)
@@ -3148,7 +3148,7 @@ CREATE TABLE IF NOT EXISTS `treport_content_sla_com_temp` (
 	PRIMARY KEY(`id`),
 	FOREIGN KEY (`id_report_content`) REFERENCES treport_content_template(`id_rc`)
 		ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `treport_content_item_temp` (treport_content_item_template)
@@ -3162,7 +3162,7 @@ CREATE TABLE IF NOT EXISTS `treport_content_item_temp` (
 	`exact_match` tinyint(1) default 0,
 	`operation` text,	
 	PRIMARY KEY(`id`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tgraph_template`
@@ -3180,7 +3180,7 @@ CREATE TABLE IF NOT EXISTS `tgraph_template` (
 	`stacked` tinyint(1) UNSIGNED NOT NULL default 0,
 	`id_group` mediumint(8) unsigned NULL default 0,
 	PRIMARY KEY(`id_graph_template`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tgraph_source_template`
@@ -3193,7 +3193,7 @@ CREATE TABLE IF NOT EXISTS `tgraph_source_template` (
 	`weight` FLOAT(5,3) NOT NULL DEFAULT 2,
 	`exact_match` tinyint(1) default 0, 
 	PRIMARY KEY(`id_gs_template`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tmetaconsole_event`
@@ -3234,7 +3234,7 @@ CREATE TABLE IF NOT EXISTS `tmetaconsole_event` (
 	KEY `idx_agentmodule` (`id_agentmodule`),
 	KEY `server_id` (`server_id`),
 	KEY `idx_utimestamp` USING BTREE (`utimestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 -- Criticity: 0 - Maintance (grey)
 -- Criticity: 1 - Informational (blue)
 -- Criticity: 2 - Normal (green) (status 0)
@@ -3286,7 +3286,7 @@ CREATE TABLE IF NOT EXISTS `tmetaconsole_event_history` (
 	KEY `idx_agente` (`id_agente`),
 	KEY `idx_agentmodule` (`id_agentmodule`),
 	KEY `idx_utimestamp` USING BTREE (`utimestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 -- Criticity: 0 - Maintance (grey)
 -- Criticity: 1 - Informational (blue)
 -- Criticity: 2 - Normal (green) (status 0)
@@ -3308,7 +3308,7 @@ CREATE TABLE IF NOT EXISTS `textension_translate_string` (
 	`translation` TEXT NOT NULL DEFAULT '',
 	PRIMARY KEY (`id`),
 	KEY `lang_index` (`lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tagent_module_log`
@@ -3320,7 +3320,7 @@ CREATE TABLE IF NOT EXISTS `tagent_module_log` (
 	`timestamp` datetime DEFAULT '1970-01-01 00:00:00',
 	`utimestamp` bigint(20) DEFAULT '0',
 	PRIMARY KEY (`id_agent_module_log`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tevent_custom_field`
@@ -3329,7 +3329,7 @@ CREATE TABLE IF NOT EXISTS `tevent_custom_field` (
 	`id_group` mediumint(4) unsigned NOT NULL,
 	`value` text NOT NULL,
 	PRIMARY KEY  (`id_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tmetaconsole_agent`
@@ -3383,7 +3383,7 @@ CREATE TABLE IF NOT EXISTS `tmetaconsole_agent` (
 	KEY `disabled` (`disabled`),
 	KEY `id_grupo` (`id_grupo`),
 	FOREIGN KEY (`id_tmetaconsole_setup`) REFERENCES tmetaconsole_setup(`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 ALTER TABLE tmetaconsole_agent ADD INDEX `tma_id_os_idx` (`id_os`);
 ALTER TABLE tmetaconsole_agent ADD INDEX `tma_server_name_idx` (`server_name`);
@@ -3401,7 +3401,7 @@ create table IF NOT EXISTS `ttransaction` (
     `ready` int unsigned NOT NULL default 0,
     `running` int unsigned NOT NULL default 0,
     PRIMARY KEY (`transaction_id`)
-) engine=InnoDB DEFAULT CHARSET=utf8;
+) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tphase`
@@ -3418,7 +3418,7 @@ create table IF NOT EXISTS `tphase`(
     `retries` int unsigned default null,
     `timeout` int unsigned default null,
     PRIMARY KEY (`phase_id`,`transaction_id`)
-) engine=InnoDB DEFAULT CHARSET=utf8;
+) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE IF NOT EXISTS `treset_pass` (
 	`id` bigint(10) unsigned NOT NULL auto_increment,
@@ -3426,7 +3426,7 @@ CREATE TABLE IF NOT EXISTS `treset_pass` (
 	`cod_hash` varchar(100) NOT NULL default '',
 	`reset_time` int unsigned NOT NULL default 0,
 	PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tcluster`
@@ -3440,7 +3440,7 @@ create table IF NOT EXISTS `tcluster`(
 		`group` int unsigned NOT NULL default '0',
 		`id_agent` int unsigned NOT NULL,
 		PRIMARY KEY (`id`)
-) engine=InnoDB DEFAULT CHARSET=utf8;
+) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tcluster_item`
@@ -3457,7 +3457,7 @@ create table IF NOT EXISTS `tcluster_item`(
 		PRIMARY KEY (`id`),
 		FOREIGN KEY (`id_cluster`) REFERENCES tcluster(`id`)
 			ON DELETE SET NULL ON UPDATE CASCADE
-) engine=InnoDB DEFAULT CHARSET=utf8;
+) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tcluster_agent`
@@ -3469,7 +3469,7 @@ create table IF NOT EXISTS `tcluster_agent`(
 		PRIMARY KEY (`id_cluster`,`id_agent`),
 		FOREIGN KEY (`id_cluster`) REFERENCES tcluster(`id`)
 			ON UPDATE CASCADE
-) engine=InnoDB DEFAULT CHARSET=utf8;
+) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tprovisioning`
@@ -3481,7 +3481,7 @@ create table IF NOT EXISTS `tprovisioning`(
 	`order` int NOT NULL default 0,
 	`config` TEXT default '',
 		PRIMARY KEY (`id`)
-) engine=InnoDB DEFAULT CHARSET=utf8;
+) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tprovisioning_rules`
@@ -3496,7 +3496,7 @@ create table IF NOT EXISTS `tprovisioning_rules`(
 		PRIMARY KEY (`id`),
 		FOREIGN KEY (`id_provisioning`) REFERENCES tprovisioning(`id`)
 			ON DELETE CASCADE
-) engine=InnoDB DEFAULT CHARSET=utf8;
+) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tmigration_queue`
@@ -3513,7 +3513,7 @@ create table IF NOT EXISTS `tmigration_queue`(
     `running` tinyint(2) default 0,
     `active_db_only` tinyint(2) default 0,
     PRIMARY KEY(`id`)
-) engine=InnoDB DEFAULT CHARSET=utf8;
+) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tmigration_module_queue`
@@ -3529,7 +3529,7 @@ create table IF NOT EXISTS `tmigration_module_queue`(
     FOREIGN KEY(`id_migration`) REFERENCES tmigration_queue(`id`)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-) engine=InnoDB DEFAULT CHARSET=utf8;
+) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tagent_secondary_group`
@@ -3544,7 +3544,7 @@ create table IF NOT EXISTS `tagent_secondary_group`(
         ON DELETE CASCADE,
 	FOREIGN KEY(`id_group`) REFERENCES tgrupo(`id_grupo`)
         ON DELETE CASCADE
-) engine=InnoDB DEFAULT CHARSET=utf8;
+) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tmetaconsole_agent_secondary_group`
@@ -3563,7 +3563,7 @@ create table IF NOT EXISTS `tmetaconsole_agent_secondary_group`(
         ON DELETE CASCADE,
 	FOREIGN KEY (`id_tmetaconsole_setup`) REFERENCES tmetaconsole_setup(`id`)
 		ON DELETE CASCADE
-) engine=InnoDB DEFAULT CHARSET=utf8;
+) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tautoconfig`
@@ -3574,7 +3574,7 @@ CREATE TABLE IF NOT EXISTS `tautoconfig` (
   `order` int NOT NULL DEFAULT '0',
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tautoconfig_rules`
@@ -3590,7 +3590,7 @@ CREATE TABLE IF NOT EXISTS `tautoconfig_rules` (
   PRIMARY KEY (`id`),
   KEY `id_autoconfig` (`id_autoconfig`),
   CONSTRAINT `tautoconfig_rules_ibfk_1` FOREIGN KEY (`id_autoconfig`) REFERENCES `tautoconfig` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tautoconfig_actions`
@@ -3605,7 +3605,7 @@ CREATE TABLE IF NOT EXISTS `tautoconfig_actions` (
   PRIMARY KEY (`id`),
   KEY `id_autoconfig` (`id_autoconfig`),
   CONSTRAINT `tautoconfig_action_ibfk_1` FOREIGN KEY (`id_autoconfig`) REFERENCES `tautoconfig` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tlayout_template`
@@ -3620,7 +3620,7 @@ CREATE TABLE IF NOT EXISTS `tlayout_template` (
 	`background_color` varchar(50) NOT NULL default '#FFF',
 	`is_favourite` INTEGER UNSIGNED NOT NULL default 0,
 	PRIMARY KEY(`id`)
-)  ENGINE = InnoDB DEFAULT CHARSET=utf8;
+)  ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tlayout_template_data`
@@ -3664,7 +3664,7 @@ CREATE TABLE IF NOT EXISTS `tlayout_template_data` (
 	`cache_expiration` INTEGER UNSIGNED NOT NULL default 0,
 	PRIMARY KEY(`id`),
 	FOREIGN KEY (`id_layout_template`) REFERENCES tlayout_template(`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tlog_graph_models`
@@ -3676,7 +3676,7 @@ CREATE TABLE IF NOT EXISTS `tlog_graph_models` (
 	`fields` TEXT NOT NULL,
 	`average` tinyint(1) NOT NULL default '0',
 	PRIMARY KEY(`id`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tagent_custom_fields_filter`
@@ -3693,7 +3693,7 @@ CREATE TABLE IF NOT EXISTS `tagent_custom_fields_filter` (
 	`recursion` int unsigned default '0',
 	`group_search` int unsigned default '0',
 	PRIMARY KEY(`id`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- -----------------------------------------------------
 -- Table `tnetwork_matrix`
@@ -3707,7 +3707,7 @@ CREATE TABLE IF NOT EXISTS `tnetwork_matrix` (
 	`pkts` int unsigned default 0,
 	PRIMARY KEY (`id`),
 	UNIQUE (`source`, `destination`, `utimestamp`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8 ;
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `user_task`
@@ -3718,7 +3718,7 @@ CREATE TABLE `tuser_task` (
 	`parameters` text NOT NULL default '',
 	`name` varchar(60) NOT NULL default '',
 	PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `user_task_scheduled`
@@ -3734,7 +3734,7 @@ CREATE TABLE `tuser_task_scheduled` (
 	`flag_delete` tinyint(1) UNSIGNED NOT NULL default 0,
 	`id_grupo` int unsigned NOT NULL default 0,
 	PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tvisual_console_items_cache`
@@ -3755,7 +3755,7 @@ CREATE TABLE IF NOT EXISTS `tvisual_console_elements_cache` (
     FOREIGN KEY (`user_id`) REFERENCES `tusuario`(`id_user`)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-) engine=InnoDB DEFAULT CHARSET=utf8;
+) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ---------------------------------------------------------------------
 -- Table `tagent_repository`
@@ -3772,7 +3772,7 @@ CREATE TABLE `tagent_repository` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_os`) REFERENCES `tconfig_os`(`id_os`)
     ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tdeployment_hosts`
@@ -3796,7 +3796,7 @@ CREATE TABLE `tdeployment_hosts` (
     ON UPDATE CASCADE ON DELETE CASCADE,
   FOREIGN KEY (`target_agent_version_id`) REFERENCES  `tagent_repository`(`id`)
     ON UPDATE CASCADE ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tremote_command`
@@ -3812,7 +3812,7 @@ CREATE TABLE `tremote_command` (
   `utimestamp` int unsigned NOT NULL default 0,
   `id_group` int unsigned NOT NULL default 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tremote_command_target`
@@ -3828,7 +3828,7 @@ CREATE TABLE `tremote_command_target` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`rcmd_id`) REFERENCES `tremote_command`(`id`)
     ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- ----------------------------------------------------------------------
 -- Table `tnode_relations`
@@ -3839,4 +3839,4 @@ CREATE TABLE `tnode_relations` (
 	`imei` VARCHAR(100) NOT NULL,
 	`node_address` VARCHAR(60) NOT NULL,
 	PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
