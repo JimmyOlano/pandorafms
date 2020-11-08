@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `tagente` (
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tagente_datos` (
 	`id_agente_modulo` int unsigned NOT NULL default '0',
-	`datos` double(22,5) default NULL,
+	`datos` double default NULL,
 	`utimestamp` bigint default '0',
 	KEY `data_index1` (`id_agente_modulo`, `utimestamp`),
 	KEY `idx_utimestamp` USING BTREE (`utimestamp`)
