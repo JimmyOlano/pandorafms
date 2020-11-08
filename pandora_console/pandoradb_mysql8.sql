@@ -2585,10 +2585,10 @@ CREATE TABLE IF NOT EXISTS `twidget_dashboard` (
 CREATE TABLE IF NOT EXISTS `tmodule_inventory` (
 	`id_module_inventory` int NOT NULL auto_increment,
 	`id_os` int unsigned default NULL,
-	`name` text default '',
-	`description` text default '',
+	`name` TEXT,
+	`description` TEXT,
 	`interpreter` varchar(100) default '',
-	`data_format` text default '',
+	`data_format` TEXT,
 	`code` BLOB NOT NULL,
 	`block_mode` int NOT NULL default 0,
 	PRIMARY KEY  (`id_module_inventory`),
@@ -2699,9 +2699,9 @@ DEFAULT CHARSET=UTF8MB4;
 CREATE TABLE IF NOT EXISTS `tprofile_view` (
 	`id` int unsigned NOT NULL auto_increment,
 	`id_profile` int unsigned NOT NULL default 0,
-	`sec` text default '',
-	`sec2` text default '',
-	`sec3` text default '',
+	`sec` TEXT,
+	`sec2` TEXT,
+	`sec3` TEXT,
 	PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB 
 COMMENT = 'Table to define by each profile defined in Pandora, to which sec/page has access independently of its ACL (for showing in the console or not). By default have access to all pages allowed by ACL, if forbidden here, then pages are not shown.' 
@@ -2829,7 +2829,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_plugins` (
 CREATE TABLE IF NOT EXISTS `tsesion_extended` (
 	`id` int unsigned NOT NULL auto_increment,
 	`id_sesion` int unsigned NOT NULL,
-	`extended_info` TEXT default '',
+	`extended_info` TEXT,
 	`hash` varchar(255) default '',
 	PRIMARY KEY (`id`),
 	KEY idx_session (id_sesion)
@@ -2871,17 +2871,17 @@ CREATE TABLE IF NOT EXISTS `tevent_rule` (
 	`order` int unsigned default '0',
 	`window` int NOT NULL default '0',
 	`count` int NOT NULL default '1',
-	`agent` text default '',
+	`agent` TEXT,
 	`id_usuario` varchar(100) NOT NULL default '',
 	`id_grupo` mediumint default NULL,
 	`evento` TEXT NOT NULL,
 	`event_type` enum('','unknown','alert_fired','alert_recovered','alert_ceased','alert_manual_validation','recon_host_detected','system','error','new_agent','going_up_warning','going_up_critical','going_down_warning','going_down_normal','going_down_critical','going_up_normal') default '',
-	`module` text default '',
-	`alert` text default '',
+	`module` TEXT,
+	`alert` TEXT,
 	`criticity` int unsigned default NULL,
 	`user_comment` text NOT NULL,
 	`id_tag` int unsigned NOT NULL default '0',
-	`name` text default '',
+	`name` TEXT,
 	`group_recursion` int unsigned default 0,
 	`log_content` text,
 	`log_source` text,
@@ -2908,7 +2908,7 @@ CREATE TABLE IF NOT EXISTS `tevent_rule` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tevent_alert` (
 	`id` int unsigned NOT NULL auto_increment,
-	`name` text default '',
+	`name` TEXT,
 	`description` mediumtext,
 	`order` int unsigned default 0,
 	`mode` enum('PASS','DROP'),
@@ -2994,7 +2994,7 @@ CREATE TABLE IF NOT EXISTS `tnetworkmap_enterprise` (
 	`id` int unsigned NOT NULL auto_increment,
 	`name` varchar(500) default '',
 	`id_group` int unsigned NOT NULL default 0,
-	`options` text default '',
+	`options` TEXT,
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -3012,7 +3012,7 @@ CREATE TABLE IF NOT EXISTS `tnetworkmap_enterprise_nodes` (
 	`id_module` int default 0,
 	`id_agent_module` int default 0,
 	`parent` int default 0,
-	`options` text default '',
+	`options` TEXT,
 	`deleted` int default 0,
 	`state` varchar(150) NOT NULL default '',
 	PRIMARY KEY (id),
@@ -3477,9 +3477,9 @@ create table IF NOT EXISTS `tcluster_agent`(
 create table IF NOT EXISTS `tprovisioning`(
     `id` int unsigned NOT NULL auto_increment,
     `name` varchar(100) NOT NULL,
-	`description` TEXT default '',
+	`description` TEXT,
 	`order` int NOT NULL default 0,
-	`config` TEXT default '',
+	`config` TEXT,
 		PRIMARY KEY (`id`)
 ) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
