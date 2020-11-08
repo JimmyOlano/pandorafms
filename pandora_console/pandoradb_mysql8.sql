@@ -3448,7 +3448,7 @@ create table IF NOT EXISTS `tcluster`(
 
 create table IF NOT EXISTS `tcluster_item`(
 		`id` int unsigned not null auto_increment,
-    `name` tinytext not null default '',
+    `name` tinytext not null,
     `item_type` enum('AA','AP')  not null default 'AA',
 		`critical_limit` int unsigned NOT NULL default '0',
 		`warning_limit` int unsigned NOT NULL default '0',
