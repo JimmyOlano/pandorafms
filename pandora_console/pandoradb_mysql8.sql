@@ -39,9 +39,9 @@ CREATE TABLE IF NOT EXISTS `taddress` (
 -- Table `taddress_agent`
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `taddress_agent` (
-	`id_ag` bigint(20) unsigned NOT NULL auto_increment,
-	`id_a` bigint(20) unsigned NOT NULL default '0',
-	`id_agent` mediumint(8) unsigned NOT NULL default '0',
+	`id_ag` bigint unsigned NOT NULL auto_increment,
+	`id_a` bigint unsigned NOT NULL default '0',
+	`id_agent` mediumint unsigned NOT NULL default '0',
 	PRIMARY KEY  (`id_ag`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -73,13 +73,13 @@ CREATE TABLE IF NOT EXISTS `tagente` (
 	`update_gis_data` TINYINT(1) NOT NULL DEFAULT '1' COMMENT 'set it to one to update the position data (altitude, longitude, latitude) when getting information from the agent or to 0 to keep the last value and do not update it' ,
 	`url_address` mediumtext NULL,
 	`quiet` tinyint(1) NOT NULL default '0',
-	`normal_count` bigint(20) NOT NULL default '0',
-	`warning_count` bigint(20) NOT NULL default '0',
-	`critical_count` bigint(20) NOT NULL default '0',
-	`unknown_count` bigint(20) NOT NULL default '0',
-	`notinit_count` bigint(20) NOT NULL default '0',
-	`total_count` bigint(20) NOT NULL default '0',
-	`fired_count` bigint(20) NOT NULL default '0',
+	`normal_count` bigint NOT NULL default '0',
+	`warning_count` bigint NOT NULL default '0',
+	`critical_count` bigint NOT NULL default '0',
+	`unknown_count` bigint NOT NULL default '0',
+	`notinit_count` bigint NOT NULL default '0',
+	`total_count` bigint NOT NULL default '0',
+	`fired_count` bigint NOT NULL default '0',
 	`update_module_count` tinyint(1) NOT NULL default '0',
 	`update_alert_count` tinyint(1) NOT NULL default '0',
 	`update_secondary_groups` tinyint(1) NOT NULL default '0',
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `tagente` (
 CREATE TABLE IF NOT EXISTS `tagente_datos` (
 	`id_agente_modulo` int unsigned NOT NULL default '0',
 	`datos` double(22,5) default NULL,
-	`utimestamp` bigint(20) default '0',
+	`utimestamp` bigint default '0',
 	KEY `data_index1` (`id_agente_modulo`, `utimestamp`),
 	KEY `idx_utimestamp` USING BTREE (`utimestamp`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `tagente_datos_string` (
 -- Table `tagente_datos_log4x`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tagente_datos_log4x` (
-	`id_tagente_datos_log4x` bigint(20) unsigned NOT NULL auto_increment,
+	`id_tagente_datos_log4x` bigint unsigned NOT NULL auto_increment,
 	`id_agente_modulo` int unsigned NOT NULL default '0',
 	
 	`severity` text NOT NULL,
@@ -155,21 +155,21 @@ CREATE TABLE IF NOT EXISTS `tagente_estado` (
 	`known_status` tinyint(4) default 0,
 	`id_agente` int NOT NULL default '0',
 	`last_try` datetime default NULL,
-	`utimestamp` bigint(20) NOT NULL default '0',
+	`utimestamp` bigint NOT NULL default '0',
 	`current_interval` int unsigned NOT NULL default '0',
 	`running_by` smallint(4) unsigned default '0',
-	`last_execution_try` bigint(20) NOT NULL default '0',
+	`last_execution_try` bigint NOT NULL default '0',
 	`status_changes` tinyint(4) unsigned default 0,
 	`last_status` tinyint(4) default 0,
 	`last_known_status` tinyint(4) default 0,
 	`last_error` int NOT NULL default '0',
-	`ff_start_utimestamp` bigint(20) default 0,
+	`ff_start_utimestamp` bigint default 0,
 	`ff_normal` int unsigned default '0',
 	`ff_warning` int unsigned default '0',
 	`ff_critical` int unsigned default '0',
-	`last_dynamic_update` bigint(20) NOT NULL default '0',
-	`last_unknown_update` bigint(20) NOT NULL default '0',
-	`last_status_change` bigint(20) NOT NULL default '0',
+	`last_dynamic_update` bigint NOT NULL default '0',
+	`last_unknown_update` bigint NOT NULL default '0',
+	`last_status_change` bigint NOT NULL default '0',
 	PRIMARY KEY  (`id_agente_estado`),
 	KEY `status_index_1` (`id_agente_modulo`),
 	KEY `idx_agente` (`id_agente`),
@@ -198,8 +198,8 @@ CREATE TABLE IF NOT EXISTS `tagente_modulo` (
 	`nombre` text NOT NULL,
 	`unit` text,
 	`id_policy_module` INTEGER unsigned NOT NULL default '0',
-	`max` bigint(20) default '0',
-	`min` bigint(20) default '0',
+	`max` bigint default '0',
+	`min` bigint default '0',
 	`module_interval` int unsigned default '0',
 	`cron_interval` varchar(100) default '',
 	`module_ff_interval` int unsigned default '0',
@@ -219,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `tagente_modulo` (
 	`plugin_parameter` text,
 	`id_plugin` int default '0',
 	`post_process` double(24,15) default 0,
-	`prediction_module` bigint(14) default '0',
+	`prediction_module` bigint default '0',
 	`max_timeout` int unsigned default '0',
 	`max_retries` int unsigned default '0',
 	`custom_id` varchar(255) default '',
@@ -259,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `tagente_modulo` (
 	`dynamic_interval` int unsigned default '0',
 	`dynamic_max` int default '0',
 	`dynamic_min` int default '0',
-	`dynamic_next` bigint(20) NOT NULL default '0',
+	`dynamic_next` bigint NOT NULL default '0',
 	`dynamic_two_tailed` tinyint(1) unsigned default '0',
 	`prediction_sample_window` int default 0,
 	`prediction_samples` int default 0,
@@ -282,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `tagente_modulo` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tagent_access` (
 	`id_agent` int unsigned NOT NULL default '0',
-	`utimestamp` bigint(20) NOT NULL default '0',
+	`utimestamp` bigint NOT NULL default '0',
 	KEY `agent_index` (`id_agent`),
 	KEY `idx_utimestamp` USING BTREE (`utimestamp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -375,7 +375,7 @@ CREATE TABLE  IF NOT EXISTS `talert_commands` (
 	`id` int unsigned NOT NULL auto_increment,
 	`name` varchar(100) NOT NULL default '',
 	`command` text,
-	`id_group` mediumint(8) unsigned NULL default 0,
+	`id_group` mediumint unsigned NULL default 0,
 	`description` text,
 	`internal` tinyint(1) default 0,
 	`fields_descriptions` TEXT,
@@ -412,7 +412,7 @@ CREATE TABLE  IF NOT EXISTS `talert_actions` (
 	`field18` text NOT NULL,
 	`field19` text NOT NULL,
 	`field20` text NOT NULL,
-	`id_group` mediumint(8) unsigned NULL default 0,
+	`id_group` mediumint unsigned NULL default 0,
 	`action_threshold` int NOT NULL default '0',
 	`field1_recovery` text NOT NULL,
 	`field2_recovery` text NOT NULL,
@@ -497,7 +497,7 @@ CREATE TABLE IF NOT EXISTS `talert_templates` (
 	`field14_recovery` text NOT NULL,
 	`field15_recovery` text NOT NULL,
 	`priority` tinyint(4) default '0',
-	`id_group` mediumint(8) unsigned NULL default 0,
+	`id_group` mediumint unsigned NULL default 0,
 	`special_day` tinyint(1) default 0,
 	`wizard_level` enum('basic','advanced','nowizard') default 'nowizard',
 	`min_alerts_reset_counter` tinyint(1) default 0,
@@ -518,8 +518,8 @@ CREATE TABLE IF NOT EXISTS `talert_template_modules` (
 	`id_alert_template` int unsigned NOT NULL,
 	`id_policy_alerts` int unsigned NOT NULL default '0',
 	`internal_counter` int default '0',
-	`last_fired` bigint(20) NOT NULL default '0',
-	`last_reference` bigint(20) NOT NULL default '0',
+	`last_fired` bigint NOT NULL default '0',
+	`last_reference` bigint NOT NULL default '0',
 	`times_fired` int NOT NULL default '0',
 	`disabled` tinyint(1) default '0',
 	`standby` tinyint(1) default '0',
@@ -545,7 +545,7 @@ CREATE TABLE IF NOT EXISTS `talert_template_module_actions` (
 	`fires_min` int unsigned default 0,
 	`fires_max` int unsigned default 0,
 	`module_action_threshold` int NOT NULL default '0',
-	`last_execution` bigint(20) NOT NULL default '0',
+	`last_execution` bigint NOT NULL default '0',
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`id_alert_template_module`) REFERENCES talert_template_modules(`id`)
 		ON DELETE CASCADE ON UPDATE CASCADE,
@@ -574,7 +574,7 @@ CREATE TABLE IF NOT EXISTS `tattachment` (
 	`id_usuario` varchar(60) NOT NULL default '',
 	`filename` varchar(255) NOT NULL default '',
 	`description` varchar(150) default '',
-	`size` bigint(20) unsigned NOT NULL default '0',
+	`size` bigint unsigned NOT NULL default '0',
 	PRIMARY KEY  (`id_attachment`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -604,11 +604,11 @@ CREATE TABLE IF NOT EXISTS  `tconfig_os` (
 -- Table `tcontainer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tcontainer` (
-	`id_container` mediumint(4) unsigned NOT NULL auto_increment,
+	`id_container` mediumint unsigned NOT NULL auto_increment,
 	`name` varchar(100) NOT NULL default '',
-	`parent` mediumint(4) unsigned NOT NULL default 0,
+	`parent` mediumint unsigned NOT NULL default 0,
 	`disabled` tinyint(3) unsigned NOT NULL default 0,
-	`id_group` mediumint(8) unsigned NULL default 0, 
+	`id_group` mediumint unsigned NULL default 0, 
 	`description` TEXT NOT NULL,
  	PRIMARY KEY  (`id_container`),
  	KEY `parent_index` (`parent`)
@@ -619,10 +619,10 @@ CREATE TABLE IF NOT EXISTS `tcontainer` (
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tcontainer_item` (
 	`id_ci` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-	`id_container` mediumint(4) unsigned NOT NULL default 0,
+	`id_container` mediumint unsigned NOT NULL default 0,
 	`type` varchar(30) default 'simple_graph',
 	`id_agent` int unsigned NOT NULL default 0,
-	`id_agent_module` bigint(14) unsigned NULL default NULL,
+	`id_agent_module` bigint unsigned NULL default NULL,
 	`time_lapse` int NOT NULL default 0,
 	`id_graph` INTEGER UNSIGNED default 0,
 	`only_average` tinyint (1) unsigned default 0 not null,
@@ -642,14 +642,14 @@ CREATE TABLE IF NOT EXISTS `tcontainer_item` (
 -- Table `tevento`
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tevento` (
-	`id_evento` bigint(20) unsigned NOT NULL auto_increment,
+	`id_evento` bigint unsigned NOT NULL auto_increment,
 	`id_agente` int NOT NULL default '0',
 	`id_usuario` varchar(100) NOT NULL default '0',
-	`id_grupo` mediumint(4) NOT NULL default '0',
+	`id_grupo` mediumint NOT NULL default '0',
 	`estado` tinyint(3) unsigned NOT NULL default '0',
 	`timestamp` datetime NOT NULL default '1970-01-01 00:00:00',
 	`evento` text NOT NULL,
-	`utimestamp` bigint(20) NOT NULL default '0',
+	`utimestamp` bigint NOT NULL default '0',
 	`event_type` enum('going_unknown','unknown','alert_fired','alert_recovered','alert_ceased','alert_manual_validation','recon_host_detected','system','error','new_agent','going_up_warning','going_up_critical','going_down_warning','going_down_normal','going_down_critical','going_up_normal', 'configuration_change') default 'unknown',
 	`id_agentmodule` int NOT NULL default '0',
 	`id_alert_am` int NOT NULL default '0',
@@ -662,7 +662,7 @@ CREATE TABLE IF NOT EXISTS `tevento` (
 	`warning_instructions` text NOT NULL,
 	`unknown_instructions` text NOT NULL,
 	`owner_user` VARCHAR(100) NOT NULL DEFAULT '',
-	`ack_utimestamp` BIGINT(20) NOT NULL DEFAULT '0',
+	`ack_utimestamp` bigint NOT NULL DEFAULT '0',
 	`custom_data` TEXT NOT NULL,
 	`data` double(22,5) default NULL,
 	`module_status` int NOT NULL default '0',
@@ -682,9 +682,9 @@ CREATE TABLE IF NOT EXISTS `tevento` (
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tevent_extended` (
 	`id` serial PRIMARY KEY,
-	`id_evento` bigint(20) unsigned NOT NULL,
-	`external_id` bigint(20) unsigned,
-	`utimestamp` bigint(20) NOT NULL default '0',
+	`id_evento` bigint unsigned NOT NULL,
+	`external_id` bigint unsigned,
+	`utimestamp` bigint NOT NULL default '0',
 	`description` text,
 	FOREIGN KEY `tevent_ext_fk`(`id_evento`) REFERENCES `tevento`(`id_evento`)
     ON UPDATE CASCADE ON DELETE CASCADE
@@ -694,10 +694,10 @@ CREATE TABLE IF NOT EXISTS `tevent_extended` (
 -- Table `tgrupo`
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tgrupo` (
-	`id_grupo` mediumint(4) unsigned NOT NULL auto_increment,
+	`id_grupo` mediumint unsigned NOT NULL auto_increment,
 	`nombre` varchar(100) NOT NULL default '',
 	`icon` varchar(50) default 'world',
-	`parent` mediumint(4) unsigned NOT NULL default '0',
+	`parent` mediumint unsigned NOT NULL default '0',
 	`propagate` tinyint(1) unsigned NOT NULL default '0',
 	`disabled` tinyint(3) unsigned NOT NULL default '0',
 	`custom_id` varchar(255) default '',
@@ -715,7 +715,7 @@ CREATE TABLE IF NOT EXISTS `tgrupo` (
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tcredential_store` (
 	`identifier` varchar(100) NOT NULL,
-	`id_group` mediumint(4) unsigned NOT NULL DEFAULT 0,
+	`id_group` mediumint unsigned NOT NULL DEFAULT 0,
 	`product` enum('CUSTOM', 'AWS', 'AZURE', 'GOOGLE', 'SAP') default 'CUSTOM',
 	`username` text,
 	`password` text,
@@ -728,7 +728,7 @@ CREATE TABLE IF NOT EXISTS `tcredential_store` (
 -- Table `tincidencia`
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tincidencia` (
-	`id_incidencia` bigint(6) unsigned zerofill NOT NULL auto_increment,
+	`id_incidencia` bigint unsigned zerofill NOT NULL auto_increment,
 	`inicio` datetime NOT NULL default '1970-01-01 00:00:00',
 	`cierre` datetime NOT NULL default '1970-01-01 00:00:00',
 	`titulo` text NOT NULL,
@@ -737,11 +737,11 @@ CREATE TABLE IF NOT EXISTS `tincidencia` (
 	`origen` varchar(100) NOT NULL default '',
 	`estado` int NOT NULL default '0',
 	`prioridad` int NOT NULL default '0',
-	`id_grupo` mediumint(4) unsigned NOT NULL default '0',
+	`id_grupo` mediumint unsigned NOT NULL default '0',
 	`actualizacion` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
 	`id_creator` varchar(60) default NULL,
 	`id_lastupdate` varchar(60) default NULL,
-	`id_agente_modulo` bigint(100) NOT NULL,
+	`id_agente_modulo` bigint NOT NULL,
 	`notify_email` tinyint(3) unsigned NOT NULL default '0',
 	`id_agent` int unsigned NULL default 0, 
 	PRIMARY KEY  (`id_incidencia`),
@@ -790,7 +790,7 @@ CREATE TABLE IF NOT EXISTS `trecon_task` (
 	`id_network_profile` text,
 	`review_mode` tinyint(1) unsigned NOT NULL default 1,
 	`id_group` int unsigned NOT NULL default 1,
-	`utimestamp` bigint(20) unsigned NOT NULL default 0,
+	`utimestamp` bigint unsigned NOT NULL default 0,
 	`status` tinyint(4) NOT NULL default 0,
 	`interval_sweep` int unsigned NOT NULL default 0,
 	`id_recon_server` int unsigned NOT NULL default 0,
@@ -885,9 +885,9 @@ CREATE TABLE IF NOT EXISTS `tnetwork_component` (
 	`description` TEXT NOT NULL,
 	`id_group` int NOT NULL default '1',
 	`type` smallint(6) NOT NULL default '6',
-	`max` bigint(20) NOT NULL default '0',
-	`min` bigint(20) NOT NULL default '0',
-	`module_interval` mediumint(8) unsigned NOT NULL default '0',
+	`max` bigint NOT NULL default '0',
+	`min` bigint NOT NULL default '0',
+	`module_interval` mediumint unsigned NOT NULL default '0',
 	`tcp_port` int unsigned NOT NULL default '0',
 	`tcp_send` text NOT NULL,
 	`tcp_rcv` text NOT NULL,
@@ -935,7 +935,7 @@ CREATE TABLE IF NOT EXISTS `tnetwork_component` (
 	`dynamic_interval` int unsigned default '0',
 	`dynamic_max` int default '0',
 	`dynamic_min` int default '0',
-	`dynamic_next` bigint(20) NOT NULL default '0',
+	`dynamic_next` bigint NOT NULL default '0',
 	`dynamic_two_tailed` tinyint(1) unsigned default '0',
 	`module_type` tinyint(1) unsigned NOT NULL DEFAULT 1,
 	`protocol` tinytext NOT NULL,
@@ -960,7 +960,7 @@ CREATE TABLE IF NOT EXISTS `tnetwork_component` (
 CREATE TABLE IF NOT EXISTS `tnetwork_component_group` (
 	`id_sg`  int unsigned NOT NULL auto_increment,
 	`name` varchar(200) NOT NULL default '',
-	`parent` mediumint(8) unsigned NOT NULL default '0',
+	`parent` mediumint unsigned NOT NULL default '0',
 	PRIMARY KEY  (`id_sg`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -978,8 +978,8 @@ CREATE TABLE IF NOT EXISTS `tnetwork_profile` (
 -- Table `tnetwork_profile_component`
 -- ----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tnetwork_profile_component` (
-	`id_nc` mediumint(8) unsigned NOT NULL default '0',
-	`id_np` mediumint(8) unsigned NOT NULL default '0',
+	`id_nc` mediumint unsigned NOT NULL default '0',
+	`id_np` mediumint unsigned NOT NULL default '0',
 	KEY `id_np` (`id_np`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -1009,8 +1009,8 @@ CREATE TABLE IF NOT EXISTS `tnetwork_profile_pen` (
 -- Table `tnota`
 -- ----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tnota` (
-	`id_nota` bigint(6) unsigned zerofill NOT NULL auto_increment,
-	`id_incident` bigint(6) unsigned zerofill NOT NULL,
+	`id_nota` bigint unsigned zerofill NOT NULL auto_increment,
+	`id_incident` bigint unsigned zerofill NOT NULL,
 	`id_usuario` varchar(100) NOT NULL default '0',
 	`timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP,
 	`nota` mediumtext NOT NULL,
@@ -1100,7 +1100,7 @@ CREATE TABLE IF NOT EXISTS `tserver` (
 	`total_modules_running` int NOT NULL default 0,
 	`my_modules` int NOT NULL default 0,
 	`server_keepalive` int NOT NULL default 0,
-	`stat_utimestamp` bigint(20) NOT NULL default '0',
+	`stat_utimestamp` bigint NOT NULL default '0',
 	`exec_proxy` tinyint(1) UNSIGNED NOT NULL default 0,
 	`port` int unsigned NOT NULL default 0,
 	PRIMARY KEY  (`id_server`),
@@ -1123,13 +1123,13 @@ CREATE TABLE IF NOT EXISTS `tserver` (
 -- Table `tsesion`
 -- ----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tsesion` (
-	`id_sesion` bigint(20) unsigned NOT NULL auto_increment,
+	`id_sesion` bigint unsigned NOT NULL auto_increment,
 	`id_usuario` varchar(60) NOT NULL default '0',
 	`ip_origen` varchar(100) NOT NULL default '',
 	`accion` varchar(100) NOT NULL default '',
 	`descripcion` text NOT NULL,
 	`fecha` datetime NOT NULL default '1970-01-01 00:00:00',
-	`utimestamp` bigint(20) unsigned NOT NULL default '0',
+	`utimestamp` bigint unsigned NOT NULL default '0',
 	PRIMARY KEY  (`id_sesion`),
 	KEY `idx_user` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -1150,7 +1150,7 @@ CREATE TABLE IF NOT EXISTS `ttipo_modulo` (
 -- Table `ttrap`
 -- ----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ttrap` (
-	`id_trap` bigint(20) unsigned NOT NULL auto_increment,
+	`id_trap` bigint unsigned NOT NULL auto_increment,
 	`source` varchar(50) NOT NULL default '',
 	`oid` text NOT NULL,
 	`oid_custom` text,
@@ -1214,8 +1214,8 @@ CREATE TABLE IF NOT EXISTS `tusuario` (
 	`middlename` varchar(255) NOT NULL,
 	`password` varchar(45) default NULL,
 	`comments` varchar(200) default NULL,
-	`last_connect` bigint(20) NOT NULL default '0',
-	`registered` bigint(20) NOT NULL default '0',
+	`last_connect` bigint NOT NULL default '0',
+	`registered` bigint NOT NULL default '0',
 	`email` varchar(100) default NULL,
 	`phone` varchar(100) default NULL,
 	`is_admin` tinyint(1) unsigned NOT NULL default '0',
@@ -1256,7 +1256,7 @@ CREATE TABLE IF NOT EXISTS `tusuario` (
 -- Table `tusuario_perfil`
 -- ----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tusuario_perfil` (
-	`id_up` bigint(10) unsigned NOT NULL auto_increment,
+	`id_up` bigint unsigned NOT NULL auto_increment,
 	`id_usuario` varchar(100) NOT NULL default '',
 	`id_perfil` int unsigned NOT NULL default '0',
 	`id_grupo` int NOT NULL default '0',
@@ -1311,13 +1311,13 @@ CREATE TABLE IF NOT EXISTS `tmensajes` (
 	`id_mensaje` int UNSIGNED NOT NULL AUTO_INCREMENT,
 	`id_usuario_origen` VARCHAR(60) NOT NULL DEFAULT '',
 	`mensaje` TEXT NOT NULL,
-	`timestamp` BIGINT(20) UNSIGNED NOT NULL DEFAULT '0',
+	`timestamp` bigint UNSIGNED NOT NULL DEFAULT '0',
 	`subject` VARCHAR(255) NOT NULL DEFAULT '',
 	`estado` int UNSIGNED NOT NULL DEFAULT '0',
 	`url` TEXT,
 	`response_mode` VARCHAR(200) DEFAULT NULL,
 	`citicity` int UNSIGNED DEFAULT '0',
-	`id_source` BIGINT(20) UNSIGNED NOT NULL,
+	`id_source` bigint UNSIGNED NOT NULL,
 	`subtype` VARCHAR(255) DEFAULT '',
 	`hidden_sent` TINYINT(1) UNSIGNED DEFAULT 0,
 	PRIMARY KEY (`id_mensaje`),
@@ -1332,8 +1332,8 @@ CREATE TABLE IF NOT EXISTS `tmensajes` (
 CREATE TABLE `tnotification_user` (
     `id_mensaje` int UNSIGNED NOT NULL,
     `id_user` VARCHAR(60) NOT NULL,
-    `utimestamp_read` BIGINT(20),
-    `utimestamp_erased` BIGINT(20),
+    `utimestamp_read` bigint,
+    `utimestamp_erased` bigint,
     `postpone` INT,
     PRIMARY KEY (`id_mensaje`,`id_user`),
     FOREIGN KEY (`id_mensaje`) REFERENCES `tmensajes`(`id_mensaje`)
@@ -1347,7 +1347,7 @@ CREATE TABLE `tnotification_user` (
 -- ----------------------------------------------------------------------
 CREATE TABLE `tnotification_group` (
 	`id_mensaje` int UNSIGNED NOT NULL,
-	`id_group` mediumint(4) UNSIGNED NOT NULL,
+	`id_group` mediumint UNSIGNED NOT NULL,
 	PRIMARY KEY (`id_mensaje`,`id_group`),
 	FOREIGN KEY (`id_mensaje`) REFERENCES `tmensajes`(`id_mensaje`)
 		ON UPDATE CASCADE ON DELETE CASCADE
@@ -1357,7 +1357,7 @@ CREATE TABLE `tnotification_group` (
 -- Table `tnotification_source_user`
 -- ----------------------------------------------------------------------
 CREATE TABLE `tnotification_source_user` (
-    `id_source` BIGINT(20) UNSIGNED NOT NULL,
+    `id_source` bigint UNSIGNED NOT NULL,
     `id_user` VARCHAR(60),
     `enabled` int DEFAULT NULL,
     `also_mail` int DEFAULT NULL,
@@ -1372,8 +1372,8 @@ CREATE TABLE `tnotification_source_user` (
 -- Table `tnotification_source_group`
 -- ----------------------------------------------------------------------
 CREATE TABLE `tnotification_source_group` (
-    `id_source` BIGINT(20) UNSIGNED NOT NULL,
-    `id_group` mediumint(4) unsigned NOT NULL,
+    `id_source` bigint UNSIGNED NOT NULL,
+    `id_group` mediumint unsigned NOT NULL,
     PRIMARY KEY (`id_source`,`id_group`),
 	INDEX (`id_group`),
     FOREIGN KEY (`id_source`) REFERENCES `tnotification_source`(`id`)
@@ -1384,8 +1384,8 @@ CREATE TABLE `tnotification_source_group` (
 -- Table `tnotification_source_user`
 -- ----------------------------------------------------------------------
 CREATE TABLE `tnotification_source_group_user` (
-    `id_source` BIGINT(20) UNSIGNED NOT NULL,
-    `id_group` mediumint(4) unsigned NOT NULL,
+    `id_source` bigint UNSIGNED NOT NULL,
+    `id_group` mediumint unsigned NOT NULL,
     `id_user` VARCHAR(60),
     `enabled` int DEFAULT NULL,
     `also_mail` int DEFAULT NULL,
@@ -1428,7 +1428,7 @@ CREATE TABLE IF NOT EXISTS `tgraph` (
 	`private` tinyint(1) UNSIGNED NOT NULL default 0,
 	`events` tinyint(1) UNSIGNED NOT NULL default 0,
 	`stacked` tinyint(1) UNSIGNED NOT NULL default 0,
-	`id_group` mediumint(8) unsigned NULL default 0,
+	`id_group` mediumint unsigned NULL default 0,
 	`id_graph_template` int NOT NULL default 0,
 	`percentil` tinyint(1) UNSIGNED NOT NULL default 0,
 	`summatory_series` tinyint(1) UNSIGNED NOT NULL default 0,
@@ -1461,14 +1461,14 @@ CREATE TABLE IF NOT EXISTS `treport` (
 	`name` varchar(150) NOT NULL default '',
 	`description` TEXT NOT NULL,
 	`private` tinyint(1) UNSIGNED NOT NULL default 0,
-	`id_group` mediumint(8) unsigned NULL default NULL,
+	`id_group` mediumint unsigned NULL default NULL,
 	`custom_logo` varchar(200)  default NULL,
 	`header` MEDIUMTEXT,
 	`first_page` MEDIUMTEXT,
 	`footer` MEDIUMTEXT,
 	`custom_font` varchar(200) default NULL,
 	`id_template` INTEGER UNSIGNED DEFAULT 0,
-	`id_group_edit` mediumint(8) unsigned NULL DEFAULT 0,
+	`id_group_edit` mediumint unsigned NULL DEFAULT 0,
 	`metaconsole` tinyint(1) DEFAULT 0,
 	`non_interactive` tinyint(1) UNSIGNED NOT NULL default 0,
 	`hidden` tinyint(1) DEFAULT 0,
@@ -1485,7 +1485,7 @@ CREATE TABLE IF NOT EXISTS `treport_content` (
 	`id_rc` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
 	`id_report` INTEGER UNSIGNED NOT NULL default 0,
 	`id_gs` INTEGER UNSIGNED NULL default NULL,
-	`id_agent_module` bigint(14) unsigned NULL default NULL,
+	`id_agent_module` bigint unsigned NULL default NULL,
 	`type` varchar(30) default 'simple_graph',
 	`period` int NOT NULL default 0,
 	`order` int (11) NOT NULL default 0,
@@ -1623,7 +1623,7 @@ CREATE TABLE IF NOT EXISTS `tlayout_data` (
 	`image` varchar(200) DEFAULT "",
 	`type` tinyint(1) UNSIGNED NOT NULL default 0,
 	`period` INTEGER UNSIGNED NOT NULL default 3600,
-	`id_agente_modulo` mediumint(8) unsigned NOT NULL default '0',
+	`id_agente_modulo` mediumint unsigned NOT NULL default '0',
 	`id_agent` int unsigned NOT NULL default 0,
 	`id_layout_linked` INTEGER unsigned NOT NULL default '0',
 	`parent_item` INTEGER UNSIGNED NOT NULL default 0,
@@ -1727,10 +1727,10 @@ CREATE TABLE IF NOT EXISTS `tplanned_downtime` (
 	`id` MEDIUMINT( 8 ) NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR( 100 ) NOT NULL,
 	`description` TEXT NOT NULL,
-	`date_from` bigint(20) NOT NULL default '0',
-	`date_to` bigint(20) NOT NULL default '0',
+	`date_from` bigint NOT NULL default '0',
+	`date_to` bigint NOT NULL default '0',
 	`executed` tinyint(1) UNSIGNED NOT NULL default 0,
-	`id_group` mediumint(8) unsigned NULL default 0,
+	`id_group` mediumint unsigned NULL default 0,
 	`only_alerts` tinyint(1) UNSIGNED NOT NULL default 0,
 	`monday` tinyint(1) default 0,
 	`tuesday` tinyint(1) default 0,
@@ -1755,8 +1755,8 @@ CREATE TABLE IF NOT EXISTS `tplanned_downtime` (
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tplanned_downtime_agents` (
 	`id` int unsigned NOT NULL auto_increment,
-	`id_agent` mediumint(8) unsigned NOT NULL default '0',
-	`id_downtime` mediumint(8) NOT NULL default '0',
+	`id_agent` mediumint unsigned NOT NULL default '0',
+	`id_downtime` mediumint NOT NULL default '0',
 	`all_modules` tinyint(1) default 1,
 	`manually_disabled` tinyint(1) default 0,
 	PRIMARY KEY  (`id`),
@@ -1769,9 +1769,9 @@ CREATE TABLE IF NOT EXISTS `tplanned_downtime_agents` (
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tplanned_downtime_modules` (
 	`id` int unsigned NOT NULL auto_increment,
-	`id_agent` mediumint(8) unsigned NOT NULL default '0',
+	`id_agent` mediumint unsigned NOT NULL default '0',
 	`id_agent_module` int NOT NULL, 
-	`id_downtime` mediumint(8) NOT NULL default '0',
+	`id_downtime` mediumint NOT NULL default '0',
 	PRIMARY KEY  (`id`),
 	FOREIGN KEY (`id_downtime`) REFERENCES tplanned_downtime(`id`)
 		ON DELETE CASCADE
@@ -1901,7 +1901,7 @@ CREATE  TABLE IF NOT EXISTS `tgis_map_layer` (
 	`view_layer` TINYINT(1) NOT NULL DEFAULT TRUE COMMENT 'True if the layer must be shown' ,
 	`layer_stack_order` TINYINT(3) NULL DEFAULT 0 COMMENT 'Number of order of the layer in the layer stack, bigger means upper on the stack.\n' ,
 	`tgis_map_id_tgis_map` INT NOT NULL COMMENT 'reference to the map containing the layer' ,
-	`tgrupo_id_grupo` MEDIUMINT(4) NOT NULL COMMENT 'reference to the group shown in the layer' ,
+	`tgrupo_id_grupo` mediumint NOT NULL COMMENT 'reference to the group shown in the layer' ,
 	PRIMARY KEY (`id_tmap_layer`) ,
 	INDEX `fk_tmap_layer_tgis_map1` (`tgis_map_id_tgis_map` ASC) ,
 	CONSTRAINT `fk_tmap_layer_tgis_map1`
@@ -1939,7 +1939,7 @@ COMMENT = 'Table to define wich agents are shown in a layer';
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tgis_map_layer_groups` (
 	`layer_id` INT NOT NULL,
-	`group_id` MEDIUMINT(4) UNSIGNED NOT NULL,
+	`group_id` mediumint UNSIGNED NOT NULL,
 	`agent_id` int UNSIGNED NOT NULL COMMENT 'Used to link the position to the group',
 	PRIMARY KEY (`layer_id`, `group_id`),
 	FOREIGN KEY (`layer_id`)
@@ -2122,7 +2122,7 @@ CREATE TABLE IF NOT EXISTS `tnetflow_report_content` (
 	`id_report` INTEGER UNSIGNED NOT NULL default 0,
 	`id_filter` INTEGER UNSIGNED NOT NULL default 0,
 	`description` TEXT NOT NULL,
-	`date` bigint(20) NOT NULL default '0',
+	`date` bigint NOT NULL default '0',
 	`period` int NOT NULL default 0,
 	`max` int (11) NOT NULL default 0,
 	`show_graph` varchar(60),
@@ -2155,7 +2155,7 @@ CREATE TABLE IF NOT EXISTS `tevent_response` (
 	`description` TEXT NOT NULL,
 	`target` TEXT NOT NULL,
 	`type` varchar(60) NOT NULL,
-	`id_group` MEDIUMINT(4) NOT NULL default 0,
+	`id_group` mediumint NOT NULL default 0,
 	`modal_width` INTEGER  NOT NULL DEFAULT 0,
 	`modal_height` INTEGER  NOT NULL DEFAULT 0,
 	`new_window` TINYINT(4)  NOT NULL DEFAULT 0,
@@ -2332,9 +2332,9 @@ CREATE TABLE IF NOT EXISTS `tlocal_component` (
 	`os_version` varchar(100) default '',
 	`id_network_component_group` int unsigned NOT NULL default 0,
 	`type` smallint(6) NOT NULL default '6',
-	`max` bigint(20) NOT NULL default '0',
-	`min` bigint(20) NOT NULL default '0',
-	`module_interval` mediumint(8) unsigned NOT NULL default '0',
+	`max` bigint NOT NULL default '0',
+	`min` bigint NOT NULL default '0',
+	`module_interval` mediumint unsigned NOT NULL default '0',
 	`id_module_group` tinyint(4) unsigned NOT NULL default '0',
 	`history_data` tinyint(1) unsigned default '1',
 	`min_warning` double(18,2) default 0,
@@ -2365,7 +2365,7 @@ CREATE TABLE IF NOT EXISTS `tlocal_component` (
 	`dynamic_interval` int unsigned default '0',
 	`dynamic_max` int default '0',
 	`dynamic_min` int default '0',
-	`dynamic_next` bigint(20) NOT NULL default '0',
+	`dynamic_next` bigint NOT NULL default '0',
 	`dynamic_two_tailed` tinyint(1) unsigned default '0',
 	`prediction_sample_window` int default 0,
 	`prediction_samples` int default 0,
@@ -2386,8 +2386,8 @@ CREATE TABLE IF NOT EXISTS `tpolicy_modules` (
 	`description` varchar(1024) NOT NULL default '',
 	`name` varchar(200) NOT NULL default '',
 	`unit` text default '',
-	`max` bigint(20) default '0',
-	`min` bigint(20) default '0',
+	`max` bigint default '0',
+	`min` bigint default '0',
 	`module_interval` int unsigned default '0',
 	`ip_target` varchar(100) default '',
 	`tcp_port` int unsigned default '0',
@@ -2405,7 +2405,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_modules` (
 	`plugin_parameter` text,
 	`id_plugin` int default '0',
 	`post_process` double(24,15) default 0,
-	`prediction_module` bigint(14) default '0',
+	`prediction_module` bigint default '0',
 	`max_timeout` int unsigned default '0',
 	`max_retries` int unsigned default '0',
 	`custom_id` varchar(255) default '',
@@ -2444,7 +2444,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_modules` (
 	`dynamic_interval` int unsigned default '0',
 	`dynamic_max` int default '0',
 	`dynamic_min` int default '0',
-	`dynamic_next` bigint(20) NOT NULL default '0',
+	`dynamic_next` bigint NOT NULL default '0',
 	`dynamic_two_tailed` tinyint(1) unsigned default '0',
 	`prediction_sample_window` int default 0,
 	`prediction_samples` int default 0,
@@ -2609,7 +2609,7 @@ CREATE TABLE IF NOT EXISTS `tagent_module_inventory` (
 	`password` varchar(100) default '',
 	`data` MEDIUMBLOB NOT NULL,
 	`timestamp` datetime default '1970-01-01 00:00:00',
-	`utimestamp` bigint(20) default '0',
+	`utimestamp` bigint default '0',
 	`flag` tinyint(1) unsigned default '1',
 	`id_policy_module_inventory` int NOT NULL default '0',
 	`custom_fields` MEDIUMBLOB NOT NULL,
@@ -2645,7 +2645,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_modules_inventory` (
 CREATE TABLE IF NOT EXISTS `tagente_datos_inventory` (
 	`id_agent_module_inventory` int NOT NULL,
 	`data` MEDIUMBLOB NOT NULL,
-	`utimestamp` bigint(20) default '0',
+	`utimestamp` bigint default '0',
 	`timestamp` datetime default '1970-01-01 00:00:00',
 	KEY `idx_id_agent_module` (`id_agent_module_inventory`),
 	KEY `idx_utimestamp` USING BTREE (`utimestamp`)
@@ -2686,7 +2686,7 @@ CREATE TABLE IF NOT EXISTS `tmetaconsole_setup` (
 	`id_group` int unsigned NOT NULL default 0,
 	`api_password` text NOT NULL,
 	`disabled` tinyint(1) unsigned NOT NULL default '0',
-	`last_event_replication` bigint(20) default '0',
+	`last_event_replication` bigint default '0',
 	`server_uid` text NOT NULL default '',
 	PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB 
@@ -2873,7 +2873,7 @@ CREATE TABLE IF NOT EXISTS `tevent_rule` (
 	`count` int NOT NULL default '1',
 	`agent` text default '',
 	`id_usuario` varchar(100) NOT NULL default '',
-	`id_grupo` mediumint(4) default NULL,
+	`id_grupo` mediumint default NULL,
 	`evento` text NOT NULL default '',
 	`event_type` enum('','unknown','alert_fired','alert_recovered','alert_ceased','alert_manual_validation','recon_host_detected','system','error','new_agent','going_up_warning','going_up_critical','going_down_warning','going_down_normal','going_down_critical','going_up_normal') default '',
 	`module` text default '',
@@ -2937,10 +2937,10 @@ CREATE TABLE IF NOT EXISTS `tevent_alert` (
 	`recovery_notify` tinyint(1) default '0',
 	`field2_recovery` text NOT NULL default '',
 	`field3_recovery` text NOT NULL,
-	`id_group` mediumint(8) unsigned NULL default 0,
+	`id_group` mediumint unsigned NULL default 0,
 	`internal_counter` int default '0',
-	`last_fired` bigint(20) NOT NULL default '0',
-	`last_reference` bigint(20) NOT NULL default '0',
+	`last_fired` bigint NOT NULL default '0',
+	`last_reference` bigint NOT NULL default '0',
 	`times_fired` int NOT NULL default '0',
 	`disabled` tinyint(1) default '0',
 	`standby` tinyint(1) default '0',
@@ -2962,7 +2962,7 @@ CREATE TABLE IF NOT EXISTS `tevent_alert_action` (
 	`fires_min` int unsigned default 0,
 	`fires_max` int unsigned default 0,
 	`module_action_threshold` int NOT NULL default '0',
-	`last_execution` bigint(20) NOT NULL default '0',
+	`last_execution` bigint NOT NULL default '0',
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`id_event_alert`) REFERENCES tevent_alert(`id`)
 		ON DELETE CASCADE ON UPDATE CASCADE,
@@ -3046,7 +3046,7 @@ CREATE TABLE IF NOT EXISTS `treport_template` (
 	`name` varchar(150) NOT NULL default '',
 	`description` TEXT NOT NULL,
 	`private` tinyint(1) UNSIGNED NOT NULL default 0,
-	`id_group` mediumint(8) unsigned NULL default NULL,
+	`id_group` mediumint unsigned NULL default NULL,
 	`custom_logo` varchar(200)  default NULL,
 	`header` MEDIUMTEXT  default NULL,
 	`first_page` MEDIUMTEXT default NULL,
@@ -3178,7 +3178,7 @@ CREATE TABLE IF NOT EXISTS `tgraph_template` (
 	`private` tinyint(1) UNSIGNED NOT NULL default 0,
 	`events` tinyint(1) UNSIGNED NOT NULL default 0,
 	`stacked` tinyint(1) UNSIGNED NOT NULL default 0,
-	`id_group` mediumint(8) unsigned NULL default 0,
+	`id_group` mediumint unsigned NULL default 0,
 	PRIMARY KEY(`id_graph_template`)
 ) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -3199,17 +3199,17 @@ CREATE TABLE IF NOT EXISTS `tgraph_source_template` (
 -- Table `tmetaconsole_event`
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmetaconsole_event` (
-	`id_evento` bigint(20) unsigned NOT NULL auto_increment,
-	`id_source_event` bigint(20) unsigned NOT NULL,
+	`id_evento` bigint unsigned NOT NULL auto_increment,
+	`id_source_event` bigint unsigned NOT NULL,
 	`id_agente` int NOT NULL default '0',
 	`agent_name` varchar(600) BINARY NOT NULL default '',
 	`id_usuario` varchar(100) NOT NULL default '0',
-	`id_grupo` mediumint(4) NOT NULL default '0',
+	`id_grupo` mediumint NOT NULL default '0',
 	`group_name` varchar(100) NOT NULL default '',
 	`estado` tinyint(3) unsigned NOT NULL default '0',
 	`timestamp` datetime NOT NULL default '1970-01-01 00:00:00',
 	`evento` text NOT NULL,
-	`utimestamp` bigint(20) NOT NULL default '0',
+	`utimestamp` bigint NOT NULL default '0',
 	`event_type` enum('going_unknown','unknown','alert_fired','alert_recovered','alert_ceased','alert_manual_validation','recon_host_detected','system','error','new_agent','going_up_warning','going_up_critical','going_down_warning','going_down_normal','going_down_critical','going_up_normal', 'configuration_change') default 'unknown',
 	`id_agentmodule` int NOT NULL default '0',
 	`module_name` varchar(600) NOT NULL,
@@ -3224,7 +3224,7 @@ CREATE TABLE IF NOT EXISTS `tmetaconsole_event` (
 	`warning_instructions` text NOT NULL default '',
 	`unknown_instructions` text NOT NULL default '',
 	`owner_user` VARCHAR(100) NOT NULL DEFAULT '',
-	`ack_utimestamp` BIGINT(20) NOT NULL DEFAULT '0',
+	`ack_utimestamp` bigint NOT NULL DEFAULT '0',
 	`server_id` int NOT NULL,
 	`custom_data` TEXT NOT NULL DEFAULT '',
 	`data` double(22,5) default NULL,
@@ -3252,17 +3252,17 @@ ALTER TABLE tmetaconsole_event ADD INDEX `tme_agent_name_idx` (`agent_name`);
 -- Table `tmetaconsole_event_history`
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmetaconsole_event_history` (
-	`id_evento` bigint(20) unsigned NOT NULL auto_increment,
-	`id_source_event` bigint(20) unsigned NOT NULL,
+	`id_evento` bigint unsigned NOT NULL auto_increment,
+	`id_source_event` bigint unsigned NOT NULL,
 	`id_agente` int NOT NULL default '0',
 	`agent_name` varchar(600) BINARY NOT NULL default '',
 	`id_usuario` varchar(100) NOT NULL default '0',
-	`id_grupo` mediumint(4) NOT NULL default '0',
+	`id_grupo` mediumint NOT NULL default '0',
 	`group_name` varchar(100) NOT NULL default '',
 	`estado` tinyint(3) unsigned NOT NULL default '0',
 	`timestamp` datetime NOT NULL default '1970-01-01 00:00:00',
 	`evento` text NOT NULL,
-	`utimestamp` bigint(20) NOT NULL default '0',
+	`utimestamp` bigint NOT NULL default '0',
 	`event_type` enum('going_unknown','unknown','alert_fired','alert_recovered','alert_ceased','alert_manual_validation','recon_host_detected','system','error','new_agent','going_up_warning','going_up_critical','going_down_warning','going_down_normal','going_down_critical','going_up_normal', 'configuration_change') default 'unknown',
 	`id_agentmodule` int NOT NULL default '0',
 	`module_name` varchar(600) NOT NULL,
@@ -3277,7 +3277,7 @@ CREATE TABLE IF NOT EXISTS `tmetaconsole_event_history` (
 	`warning_instructions` text NOT NULL default '',
 	`unknown_instructions` text NOT NULL default '',
 	`owner_user` VARCHAR(100) NOT NULL DEFAULT '',
-	`ack_utimestamp` BIGINT(20) NOT NULL DEFAULT '0',
+	`ack_utimestamp` bigint NOT NULL DEFAULT '0',
 	`server_id` int NOT NULL,
 	`custom_data` TEXT NOT NULL DEFAULT '',
 	`data` double(22,5) default NULL,
@@ -3318,7 +3318,7 @@ CREATE TABLE IF NOT EXISTS `tagent_module_log` (
 	`id_agent` int unsigned NOT NULL,
 	`source` text NOT NULL,
 	`timestamp` datetime DEFAULT '1970-01-01 00:00:00',
-	`utimestamp` bigint(20) DEFAULT '0',
+	`utimestamp` bigint DEFAULT '0',
 	PRIMARY KEY (`id_agent_module_log`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -3326,7 +3326,7 @@ CREATE TABLE IF NOT EXISTS `tagent_module_log` (
 -- Table `tevent_custom_field`
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tevent_custom_field` (
-	`id_group` mediumint(4) unsigned NOT NULL,
+	`id_group` mediumint unsigned NOT NULL,
 	`value` text NOT NULL,
 	PRIMARY KEY  (`id_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -3361,13 +3361,13 @@ CREATE TABLE IF NOT EXISTS `tmetaconsole_agent` (
 	`update_gis_data` TINYINT(1) NOT NULL DEFAULT '1' COMMENT 'set it to one to update the position data (altitude, longitude, latitude) when getting information from the agent or to 0 to keep the last value and do not update it' ,
 	`url_address` mediumtext NULL,
 	`quiet` tinyint(1) NOT NULL default '0',
-	`normal_count` bigint(20) NOT NULL default '0',
-	`warning_count` bigint(20) NOT NULL default '0',
-	`critical_count` bigint(20) NOT NULL default '0',
-	`unknown_count` bigint(20) NOT NULL default '0',
-	`notinit_count` bigint(20) NOT NULL default '0',
-	`total_count` bigint(20) NOT NULL default '0',
-	`fired_count` bigint(20) NOT NULL default '0',
+	`normal_count` bigint NOT NULL default '0',
+	`warning_count` bigint NOT NULL default '0',
+	`critical_count` bigint NOT NULL default '0',
+	`unknown_count` bigint NOT NULL default '0',
+	`notinit_count` bigint NOT NULL default '0',
+	`total_count` bigint NOT NULL default '0',
+	`fired_count` bigint NOT NULL default '0',
 	`update_module_count` tinyint(1) NOT NULL default '0',
 	`update_alert_count` tinyint(1) NOT NULL default '0',
 	`update_secondary_groups` tinyint(1) NOT NULL default '0',
@@ -3421,7 +3421,7 @@ create table IF NOT EXISTS `tphase`(
 ) engine=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE IF NOT EXISTS `treset_pass` (
-	`id` bigint(10) unsigned NOT NULL auto_increment,
+	`id` bigint unsigned NOT NULL auto_increment,
 	`id_user` varchar(100) NOT NULL default '',
 	`cod_hash` varchar(100) NOT NULL default '',
 	`reset_time` int unsigned NOT NULL default 0,
@@ -3524,7 +3524,7 @@ create table IF NOT EXISTS `tmigration_module_queue`(
     `id_migration` int unsigned not null,
     `id_source_agentmodule` int unsigned not null,
     `id_target_agentmodule` int unsigned not null,
-    `last_replication_timestamp` bigint(20) NOT NULL default 0,
+    `last_replication_timestamp` bigint NOT NULL default 0,
     PRIMARY KEY(`id`),
     FOREIGN KEY(`id_migration`) REFERENCES tmigration_queue(`id`)
         ON DELETE CASCADE
@@ -3538,7 +3538,7 @@ create table IF NOT EXISTS `tmigration_module_queue`(
 create table IF NOT EXISTS `tagent_secondary_group`(
     `id` int unsigned not null auto_increment,
     `id_agent` int unsigned NOT NULL,
-    `id_group` mediumint(4) unsigned NOT NULL,
+    `id_group` mediumint unsigned NOT NULL,
     PRIMARY KEY(`id`),
     FOREIGN KEY(`id_agent`) REFERENCES tagente(`id_agente`)
         ON DELETE CASCADE,
@@ -3554,7 +3554,7 @@ create table IF NOT EXISTS `tmetaconsole_agent_secondary_group`(
     `id_agent` int unsigned NOT NULL,
     `id_tagente` int unsigned NOT NULL,
     `id_tmetaconsole_setup` int NOT NULL,
-    `id_group` mediumint(4) unsigned NOT NULL,
+    `id_group` mediumint unsigned NOT NULL,
     PRIMARY KEY(`id`),
 	KEY `id_tagente` (`id_tagente`),
     FOREIGN KEY(`id_agent`) REFERENCES tmetaconsole_agent(`id_agente`)
@@ -3702,7 +3702,7 @@ CREATE TABLE IF NOT EXISTS `tnetwork_matrix` (
 	`id` int unsigned NOT NULL auto_increment,
 	`source` varchar(60) default '',
 	`destination` varchar(60) default '',
-	`utimestamp` bigint(20) default 0,
+	`utimestamp` bigint default 0,
 	`bytes` int unsigned default 0,
 	`pkts` int unsigned default 0,
 	PRIMARY KEY (`id`),
@@ -3767,7 +3767,7 @@ CREATE TABLE `tagent_repository` (
   `version` VARCHAR(10) DEFAULT '',
   `path` text,
   `uploaded_by` VARCHAR(100) DEFAULT '',
-  `uploaded` bigint(20) NOT NULL DEFAULT 0 COMMENT "When it was uploaded",
+  `uploaded` bigint NOT NULL DEFAULT 0 COMMENT "When it was uploaded",
   `last_err` text,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_os`) REFERENCES `tconfig_os`(`id_os`)
@@ -3786,7 +3786,7 @@ CREATE TABLE `tdeployment_hosts` (
   `arch` ENUM('x64', 'x86') DEFAULT 'x64',
   `current_agent_version` VARCHAR(100) DEFAULT '' COMMENT "String latest installed agent",
   `target_agent_version_id` BIGINT UNSIGNED,
-  `deployed` bigint(20) NOT NULL DEFAULT 0 COMMENT "When it was deployed",
+  `deployed` bigint NOT NULL DEFAULT 0 COMMENT "When it was deployed",
   `server_ip` varchar(100) default NULL COMMENT "Where to point target agent",
   `last_err` text,
   PRIMARY KEY (`id`),
