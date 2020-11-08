@@ -1,12 +1,11 @@
 <?php
 /**
- * Extension to manage a list of gateways and the node address where they should
- * point to.
+ * Pandora FMS - Installation Wizard
  *
- * @category   Extensions
+ * @category   Setup
  * @package    Pandora FMS
  * @subpackage Community
- * @version    1.0.0
+ * @version    1.0.1
  * @license    See below
  *
  *    ______                 ___                    _______ _______ ________
@@ -15,7 +14,7 @@
  * |___|   |___._|__|__|_____||_____|__| |___._| |___|   |__|_|__|_______|
  *
  * ============================================================================
- * Copyright (c) 2005-2019 Artica Soluciones Tecnologicas
+ * Copyright (c) 2005-2020 Artica Soluciones Tecnologicas
  * Please see http://pandorafms.org for full contribution list
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
