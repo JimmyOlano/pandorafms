@@ -2141,8 +2141,8 @@ CREATE TABLE IF NOT EXISTS `tpassword_history` (
 	`id_pass`  int unsigned NOT NULL auto_increment,
 	`id_user` varchar(60) NOT NULL,
 	`password` varchar(45) default NULL,
-	`date_begin` DATETIME  NOT NULL DEFAULT 0,
-	`date_end` DATETIME  NOT NULL DEFAULT 0,
+	`date_begin` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
+	`date_end` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
 	PRIMARY KEY  (`id_pass`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
