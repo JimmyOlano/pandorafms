@@ -630,7 +630,7 @@ CREATE TABLE IF NOT EXISTS `tcontainer_item` (
 	`id_module_group` int unsigned NOT NULL DEFAULT 0,
 	`agent` varchar(100) NOT NULL default '',
 	`module` varchar(100) NOT NULL default '',
-	`id_tag` integer(10) unsigned NOT NULL DEFAULT 0,
+	`id_tag` int unsigned NOT NULL DEFAULT 0,
 	`type_graph` tinyint  unsigned NOT NULL DEFAULT 0,
 	`fullscale` tinyint  UNSIGNED NOT NULL default 0,
 	PRIMARY KEY(`id_ci`),
@@ -2053,7 +2053,7 @@ CREATE TABLE IF NOT EXISTS `tagent_custom_data` (
 -- Table `ttag`
 -- ----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ttag` ( 
-	`id_tag` integer(10) unsigned NOT NULL auto_increment, 
+	`id_tag` int unsigned NOT NULL auto_increment, 
 	`name` varchar(100) NOT NULL default '', 
 	`description` text NOT NULL, 
 	`url` mediumtext NOT NULL,
@@ -2291,7 +2291,7 @@ CREATE TABLE IF NOT EXISTS `titem` (
 	`x` INTEGER NOT NULL default 0,
 	`y` INTEGER NOT NULL default 0,
 	`z` INTEGER NOT NULL default 0,
-	`deleted` INTEGER(1) unsigned NOT NULL default 0,
+	`deleted` int unsigned NOT NULL default 0,
 	`type` INTEGER UNSIGNED NOT NULL default 0,
 	`refresh` INTEGER UNSIGNED NOT NULL default 0,
 	`source` INTEGER UNSIGNED NOT NULL default 0,
@@ -2880,7 +2880,7 @@ CREATE TABLE IF NOT EXISTS `tevent_rule` (
 	`alert` text default '',
 	`criticity` int unsigned default NULL,
 	`user_comment` text NOT NULL,
-	`id_tag` integer(10) unsigned NOT NULL default '0',
+	`id_tag` int unsigned NOT NULL default '0',
 	`name` text default '',
 	`group_recursion` int unsigned default 0,
 	`log_content` text,
