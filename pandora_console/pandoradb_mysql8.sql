@@ -2385,7 +2385,7 @@ CREATE TABLE IF NOT EXISTS `tpolicy_modules` (
 	`id_tipo_modulo` smallint  NOT NULL default '0',
 	`description` varchar(1024) NOT NULL default '',
 	`name` varchar(200) NOT NULL default '',
-	`unit` text default '',
+	`unit` text,
 	`max` bigint default '0',
 	`min` bigint default '0',
 	`module_interval` int unsigned default '0',
