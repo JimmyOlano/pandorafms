@@ -2574,6 +2574,7 @@ CREATE TABLE IF NOT EXISTS `twidget_dashboard` (
 	`id` int unsigned NOT NULL auto_increment,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	`position` TEXT NOT NULL default '',
 =======
 	`position` TEXT NOT NULL,
@@ -2584,6 +2585,9 @@ CREATE TABLE IF NOT EXISTS `twidget_dashboard` (
 >>>>>>> parent of db2832451f... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column (several fields) can't have a default value
 =======
 >>>>>>> parent of 0c6eb40f59... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column \'options\' can't have a default value
+=======
+	`position` TEXT NOT NULL default '',
+>>>>>>> parent of db2832451f... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column (several fields) can't have a default value
 	`options` LONGTEXT NOT NULL default '',
 	`order` int NOT NULL default 0,
 	`id_dashboard` int unsigned NOT NULL default 0,
@@ -2780,6 +2784,9 @@ CREATE TABLE IF NOT EXISTS `tservice_element` (
 	`description` text NOT NULL default '',
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of db2832451f... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column (several fields) can't have a default value
+=======
 >>>>>>> parent of db2832451f... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column (several fields) can't have a default value
 =======
 >>>>>>> parent of db2832451f... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column (several fields) can't have a default value
@@ -3337,10 +3344,14 @@ CREATE TABLE IF NOT EXISTS `textension_translate_string` (
 	`string` TEXT NOT NULL DEFAULT '' ,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	`translation` TEXT NOT NULL DEFAULT '',
 =======
 	`translation` TEXT NOT NULL,
 >>>>>>> parent of 31f7e3a866... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column \'string\' can't have a default value
+=======
+	`translation` TEXT NOT NULL DEFAULT '',
+>>>>>>> parent of db2832451f... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column (several fields) can't have a default value
 =======
 	`translation` TEXT NOT NULL DEFAULT '',
 >>>>>>> parent of db2832451f... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column (several fields) can't have a default value
