@@ -2762,6 +2762,9 @@ CREATE TABLE IF NOT EXISTS `tservice_element` (
 	`weight_critical` float(20,3) NOT NULL default 0,
 	`weight_unknown` float(20,3) NOT NULL default 0,
 	`description` text NOT NULL default '',
+<<<<<<< HEAD
+>>>>>>> parent of db2832451f... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column (several fields) can't have a default value
+=======
 >>>>>>> parent of db2832451f... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column (several fields) can't have a default value
 	`id_agente_modulo` int unsigned NOT NULL default 0,
 	`id_agent` int unsigned NOT NULL default 0,
