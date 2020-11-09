@@ -3316,7 +3316,11 @@ CREATE TABLE IF NOT EXISTS `textension_translate_string` (
 	`id` int unsigned NOT NULL auto_increment,
 	`lang` VARCHAR(10) NOT NULL ,
 	`string` TEXT NOT NULL DEFAULT '' ,
+<<<<<<< HEAD
 	`translation` TEXT NOT NULL DEFAULT '',
+=======
+	`translation` TEXT NOT NULL,
+>>>>>>> parent of 31f7e3a866... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column \'string\' can't have a default value
 	PRIMARY KEY (`id`),
 	KEY `lang_index` (`lang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
