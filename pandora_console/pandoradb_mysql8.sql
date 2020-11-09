@@ -1410,7 +1410,7 @@ CREATE TABLE IF NOT EXISTS `tnews` (
 	`id_group` int NOT NULL default 0,
 	`modal` tinyint  DEFAULT 0,
 	`expire` tinyint  DEFAULT 0,
-	`expire_timestamp` DATETIME  NOT NULL DEFAULT '1970-01-01 00:00:00',
+	`expire_timestamp` DATETIME  NOT NULL DEFAULT 0,
 	PRIMARY KEY(`id_news`)
 ) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
 
