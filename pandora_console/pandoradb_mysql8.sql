@@ -3434,7 +3434,7 @@ CREATE TABLE IF NOT EXISTS `treset_pass` (
 
 create table IF NOT EXISTS `tcluster`(
     `id` int unsigned not null auto_increment,
-    `name` tinytext not null,
+    `name` tinytext not null default '',
     `cluster_type` enum('AA','AP') not null default 'AA',
 		`description` TEXT NOT NULL,
 		`group` int unsigned NOT NULL default '0',
