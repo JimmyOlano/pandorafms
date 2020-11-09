@@ -1229,8 +1229,13 @@ CREATE TABLE IF NOT EXISTS `tusuario` (
 	`section` TEXT NOT NULL,
 	`data_section` TEXT NOT NULL,
 	`force_change_pass` tinyint  unsigned NOT NULL default 0,
+<<<<<<< HEAD
 	`last_pass_change` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
 	`last_failed_login` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
+=======
+	`last_pass_change` DATETIME  NOT NULL DEFAULT 0,
+	`last_failed_login` DATETIME  NOT NULL DEFAULT 0,
+>>>>>>> parent of b18d6547b3... ERROR 1067 (42000): Invalid default value for 'last_pass_change' and
 	`failed_attempt` int NOT NULL DEFAULT 0,
 	`login_blocked` tinyint  unsigned NOT NULL default 0,
 	`metaconsole_access` enum('basic','advanced') default 'basic',
