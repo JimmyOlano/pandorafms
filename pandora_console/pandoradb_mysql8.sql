@@ -2577,10 +2577,13 @@ CREATE TABLE IF NOT EXISTS `twidget_dashboard` (
 	`position` TEXT NOT NULL default '',
 =======
 	`position` TEXT NOT NULL,
+<<<<<<< HEAD
 >>>>>>> parent of 0c6eb40f59... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column \'options\' can't have a default value
 =======
 	`position` TEXT NOT NULL default '',
 >>>>>>> parent of db2832451f... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column (several fields) can't have a default value
+=======
+>>>>>>> parent of 0c6eb40f59... ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column \'options\' can't have a default value
 	`options` LONGTEXT NOT NULL default '',
 	`order` int NOT NULL default 0,
 	`id_dashboard` int unsigned NOT NULL default 0,
