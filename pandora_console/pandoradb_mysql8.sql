@@ -1252,7 +1252,7 @@ CREATE TABLE IF NOT EXISTS `tusuario` (
 	`id_filter`  int unsigned NULL default NULL,
 	`session_time` int signed NOT NULL default 0,
 	`default_event_filter` int unsigned NOT NULL default 0,
-	`autorefresh_white_list` text not null,
+	`autorefresh_white_list` text not null default '',
 	`time_autorefresh` int unsigned NOT NULL default '30',
 	`default_custom_view` int unsigned NULL default '0',
 	`ehorus_user_level_user` VARCHAR(60),
